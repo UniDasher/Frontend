@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="portlet box">
+            <div class="portlet-header">
+                <div class="caption">餐品列表</div>
+                <div class="actions">
+                    <a class="btn btn-info btn-xs" ng-click="DishInsert();">
+                        <i class="fa fa-plus"></i>&nbsp;餐品新增
+                    </a>
+
+                    <a class="btn btn-info btn-xs" ng-click="DishsInsert();">
+                        <i class="fa fa-plus"></i>&nbsp;批量新增
+                    </a>
+
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row mbm">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="col-md-2 control-label">类型</div>
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <select class="select2-size form-control input-medium" ng-model="typeSelect" ng-options="m.name for m in typeSelectData">
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 pull-right">
+                        <div class="input-group">
+                            <input type="text" placeholder="查询条件" class="form-control" ng-model="searchStr">
+                            <span class="input-group-btn">
+                                <a ng-click="ToSearchList()" class="btn btn-primary">查询</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>餐品名</th>
+                        <th>价格</th>
+                        <th>类型</th>
+                        <th>口味</th>
+                        <th>描述</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="data in DishsList">
+                        <td>{{$index+1}}</td>
+                        <td>{{data.name}}</td>
+                        <td>{{data.price}}</td>
+                        <td>{{data.typeName}}</td>
+                        <td>{{data.chilies}}</td>
+                        <td>{{data.description}}</td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-xs" ng-click="updateClick(data.did)"><i class="fa fa-edit"></i>&nbsp;
+                                修改
+                            </button>&nbsp;
+                            <button type="button" class="btn btn-danger btn-xs" ng-click="deleteClick(data.did,$index)"><i class="fa fa-trash-o"></i>&nbsp;
+                                删除
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="row mbm">
+                    <div class="col-lg-12">
+                        <div class="pagination-panel">
+                            当前页
+                            &nbsp;<a href="javascript:void(0);" class="btn btn-sm btn-default btn-prev gw-prev"><i class="fa fa-angle-left"></i></a>&nbsp;
+                            <input type="text" maxlenght="5" value="1" class="pagination-panel-input form-control input-mini input-inline input-sm text-center gw-page"/>&nbsp;
+                            <a href="javascript:void(0);" class="btn btn-sm btn-default btn-prev gw-next"><i class="fa fa-angle-right"></i></a>&nbsp;
+                            总页数 {{totalPage}} | 每页
+                            &nbsp;{{countPage}}&nbsp;
+                            条数据 | 总数据 {{totalCount}} 条
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

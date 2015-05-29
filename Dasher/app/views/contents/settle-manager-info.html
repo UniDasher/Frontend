@@ -1,0 +1,95 @@
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="portlet box">
+            <div class="portlet-header">
+                <div class="caption">用户结算列表</div>
+
+            </div>
+            <div class="portlet-body">
+                <div class="row mbm">
+                    <div class="col-md-4">
+                        <div class="col-md-2 control-label">日期</div>
+                        <div class="col-md-10 input-group input-daterange">
+                            <input type="text" name="startdate" class="form-control"/>
+                            <span class="input-group-addon">to</span>
+                            <input type="text" name="enddate" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 pull-right">
+                        <div class="input-group">
+                            <input type="text" placeholder="查询条件" class="form-control" ng-model="searchStr">
+                            <span class="input-group-btn">
+                                <a href="index.html" class="btn btn-primary">查询</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <table id="table_id_over"
+                       class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                    <thead>
+                    <tr>
+                        <th style="width: 3%; padding: 10px; background: #efefef"><input
+                                type="checkbox" class="checkall"/></th>
+                        <th width="5%">#</th>
+                        <th>用户名</th>
+                        <th width="9%">账户余额</th>
+                        <th width="9%">收支金额</th>
+                        <th width="9%">当前余额</th>
+                        <th width="10%">收支类型</th>
+                        <th width="15%">订单号</th>
+                        <th width="15%">说明</th>
+                        <th width="15%">创建时间</th>
+                        <!--<th width="16%">操作</th>-->
+                    </tr>
+                    <tbody>
+                    <tr ng-repeat="data in userSettle">
+                        <td><input type="checkbox"/></td>
+                        <td>{{$index+1}}</td>
+                        <td>{{data.userNamer}}</td>
+                        <td>{{data.oldBalance  | currency}}</td>
+                        <td>{{data.settlePrice  | currency}}</td>
+                        <td>{{data.curBalance  | currency}}</td>
+
+                        <td>{{data.settleType}}</td>
+                        <td>{{data.settleNumber}}</td>
+                        <td>{{data.settleDesc}}</td>
+                        <td>{{data.createDate}}</td>
+                        <!--<td>-->
+                            <!--<button type="button" class="btn btn-default btn-xs" ng-click="ToUserInfoClick(data.uid)"><i-->
+                                    <!--class="fa fa-edit"></i>&nbsp;-->
+                                <!--详情-->
+                            <!--</button>-->
+                            <!--<button type="button" class="btn btn-danger btn-xs" ng-click="applyFreezeClick(data.uid)"><i class="fa fa-trash-o"></i>&nbsp;-->
+                                <!--冻结-->
+                            <!--</button>-->
+                        <!--</td>-->
+                    </tr>
+                    </tbody>
+                    </thead></table>
+                <div class="row mbm">
+                    <div class="col-lg-12">
+                        <div class="pagination-panel">当前页
+                            &nbsp;<a href="#" class="btn btn-sm btn-default btn-prev"><i
+                                    class="fa fa-angle-left"></i></a>&nbsp;<input
+                                    type="text" maxlenght="5" value="1"
+                                    class="pagination-panel-input form-control input-mini input-inline input-sm text-center"/>&nbsp;<a
+                                    href="#" class="btn btn-sm btn-default btn-prev"><i
+                                    class="fa fa-angle-right"></i></a>&nbsp;
+                            共 6 夜| 每页
+                            &nbsp;<select
+                                    class="form-control input-xsmall input-sm input-inline">
+                                <option value="20" selected="selected">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="150">150</option>
+                                <option value="-1">All</option>
+                            </select>&nbsp;
+                            条数据 | 共有 58 数据
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

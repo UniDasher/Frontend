@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title" ng-click="collapsable && (collapsed = !collapsed)">
+      {{title}} &nbsp;
+      <i ng-if="icons.audio" class="fa fa-volume-up"></i> &nbsp;
+      <i ng-if="icons.image" class="fa fa-picture-o"></i>
+      <i ng-if="icons.video" class="fa fa-video-camera"></i>
+    </h3>
+    <div ng-if="removable" class="delete-block" ng-click="removePanel()"><i class="fa fa-times fa-2x"></i></div>
+  </div>
+  <div class="panel-body clearfix" collapse="collapsed" ng-transclude>
+  </div>
+</div>

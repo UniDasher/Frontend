@@ -1,0 +1,227 @@
+<div class="row">
+    <div class="col-lg-12">
+        <ul id="tableactiondTab" class="nav nav-tabs">
+            <li class="active"><a data-target="#table-new-menu-tab" data-toggle="tab" ng-click="SettleTabClick(1)">用户提现</a></li>
+            <li ng-hide="true"><a data-target="#table-giving-menu-tab" data-toggle="tab" ng-click="SettleTabClick(2)">系统结算</a></li>
+            <li><a data-target="#table-over-menu-tab" data-toggle="tab" ng-click="SettleTabClick(3)">用户结算</a></li>
+        </ul>
+        <div id="tableactionTabContent" class="tab-content">
+            <div id="table-new-menu-tab" class="tab-pane fade in active">
+                <div class="row">
+                    <div class="portlet box">
+                        <div class="portlet-header">
+                            <div class="caption">可提现用户列表</div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row mbm">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <table id="table_id_new"
+                                               class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 3%; padding: 10px; background: #efefef">
+                                                    <input type="checkbox" class="checkall"/></th>
+                                                <th>#</th>
+                                                <th>用户名</th>
+                                                <th>手机号</th>
+                                                <th>账户余额</th>
+                                                <th>账号类型</th>
+                                                <th>账号</th>
+                                                <th ng-hide="true">操作</th>
+                                            </tr>
+                                            <tbody>
+                                            <tr ng-repeat="data in ListsNew">
+                                                <td><input type="checkbox"/></td>
+                                                <td>{{$index+1}}</td>
+                                                <td>{{data.firstName+' '+data.lastName}}</td>
+                                                <td>{{data.mobilePhone}}</td>
+                                                <td>{{data.balance | currency}}</td>
+                                                <td>{{data.bankType}}</td>
+                                                <td>{{data.bankAccount}}</td>
+                                                <td ng-hide="true">
+                                                    <button type="button" class="btn btn-success btn-xs" ng-click="SettleWithDrawClick(1)">
+                                                        <i class="fa fa-edit"></i>&nbsp;同意
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger btn-xs" ng-click="SettleWithDrawClick(0)">
+                                                        <i class="fa fa-trash-o"></i>&nbsp;拒绝
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                            </thead></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="table-giving-menu-tab" class="tab-pane fade">
+                <div class="row">
+                    <div class="portlet box">
+                        <div class="portlet-header">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <div class="col-md-2 control-label">日期</div>
+                                    <div class="col-md-10 input-group input-daterange">
+                                        <input type="text" name="startdate" class="form-control"/>
+                                        <span class="input-group-addon">to</span>
+                                        <input type="text" name="enddate" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pull-right">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Enter page" class="form-control">
+                                        <span class="input-group-btn">
+                                            <a href="index.html" class="btn btn-primary">查询</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row mbm">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <table id="table_id_giving"
+                                               class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 3%; padding: 10px; background: #efefef"><input
+                                                        type="checkbox" class="checkall"/></th>
+                                                <th width="5%">#</th>
+                                                <th>用户名</th>
+                                                <th width="10%">类型</th>
+                                                <th width="10%">系统余额</th>
+                                                <th width="15%">提现/充值金额</th>
+                                                <th width="10%">当前余额</th>
+                                                <th width="20%">说明</th>
+                                                <th width="15%">操作时间</th>
+                                                <!--<th width="7%">操作</th>-->
+                                            </tr>
+                                            <tbody>
+                                            <tr ng-repeat="data in ListsGiving">
+                                                <td><input type="checkbox"/></td>
+                                                <td>{{$index+1}}</td>
+                                                <td>{{data.userName}}</td>
+                                                <td>{{data.settleType}}</td>
+                                                <td>{{data.oldBalance | currency}}</td>
+                                                <td>{{data.settlePrice | currency}}</td>
+                                                <td>{{data.curBalance | currency}}</td>
+                                                <td>{{data.settleDesc}}</td>
+                                                <td>{{data.createDate}}</td>
+                                                <!--<td>-->
+                                                    <!--<button type="button" class="btn btn-default btn-xs"><i-->
+                                                            <!--class="fa fa-edit"></i>&nbsp;-->
+                                                        <!--详情-->
+                                                    <!--</button>-->
+                                                <!--</td>-->
+                                            </tr>
+                                            </tbody>
+                                            </thead></table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="pagination-panel">当前页
+                                        &nbsp;<a href="#" class="btn btn-sm btn-default btn-prev"><i
+                                                class="fa fa-angle-left"></i></a>&nbsp;<input
+                                                type="text" maxlenght="5" value="1"
+                                                class="pagination-panel-input form-control input-mini input-inline input-sm text-center"/>&nbsp;<a
+                                                href="#" class="btn btn-sm btn-default btn-prev"><i
+                                                class="fa fa-angle-right"></i></a>&nbsp;
+                                        共 6 夜| 每页
+                                        &nbsp;<select
+                                                class="form-control input-xsmall input-sm input-inline">
+                                            <option value="20" selected="selected">20</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                            <option value="150">150</option>
+                                            <option value="-1">All</option>
+                                        </select>&nbsp;
+                                        条数据 | 共有 58 数据
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="table-over-menu-tab" class="tab-pane fade">
+                <div class="row">
+                    <div class="portlet box">
+                        <div class="portlet-header">
+                            <div class="form-group">
+
+                                <div class="col-md-3 pull-right">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="用户名" class="form-control" ng-model="searchStr">
+                                        <span class="input-group-btn">
+                                            <a ng-click="ToSearchList()" class="btn btn-primary">查询</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row mbm">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <table id="table_id_over"
+                                               class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>用户名</th>
+                                                <th>账户余额</th>
+                                                <th>收支金额</th>
+                                                <th>收支类型</th>
+                                                <th>当前余额</th>
+                                                <th>账号类型</th>
+                                                <th>订单或银行账号</th>
+                                                <th>说明</th>
+                                            </tr>
+                                            <tbody>
+                                                <tr ng-repeat="data in ListsOver">
+                                                    <td>{{$index+1}}</td>
+                                                    <td>{{data.firstName+' '+data.lastName}}</td>
+                                                    <td>{{data.oldBalance  | currency}}</td>
+                                                    <td>{{data.settlePrice  | currency}}</td>
+                                                    <td>{{data.settleType}}</td>
+                                                    <td>{{data.curBalance  | currency}}</td>
+                                                    <td>{{data.settleNumberType}}</td>
+                                                    <td>{{data.settleNumber}}</td>
+                                                    <td>{{data.settleDesc}}</td>
+                                                </tr>
+                                            </tbody>
+                                            </thead></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mbm">
+                    <div class="col-lg-12">
+                        <div class="pagination-panel">
+                            当前页
+                            &nbsp;<a href="javascript:void(0);" class="btn btn-sm btn-default btn-prev gw-prev"><i class="fa fa-angle-left"></i></a>&nbsp;
+                            <input type="text" maxlenght="5" value="1" class="pagination-panel-input form-control input-mini input-inline input-sm text-center gw-page"/>&nbsp;
+                            <a href="javascript:void(0);" class="btn btn-sm btn-default btn-prev gw-next"><i class="fa fa-angle-right"></i></a>&nbsp;
+                            总页数 {{totalPage}} | 每页
+                            &nbsp;{{countPage}}&nbsp;
+                            条数据 | 总数据 {{totalCount}} 条
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>

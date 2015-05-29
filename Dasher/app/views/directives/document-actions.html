@@ -1,0 +1,11 @@
+<div class="document-actions" ng-if="document.createdAt || $state.current.dirty">
+
+  <div class="row">
+    <div class="col-sm-6 col-sm-push-6" ng-show="$state.current.dirty">
+      <button type="button" ng-click="saveAction()" class="btn btn-primary btn-block">
+        <i class="fa fa-refresh fa-spin" ng-show="isSaving"></i>
+        {{saveLabel || 'Save ' + documentType}}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div id="topbar">
+	<div class="page-header-topbar navbar">
+		<div class="navbar-header">
+			<div class="navbar-brand">
+				<img class="hidden-xs" src="../../img/nowp-logo.png" alt="Nowp Logo">
+				<div>
+					<img class="visible-xs pull-left" src="../../img/nowp-logo-xs.png" alt="Nowp Logo">
+					<i uni-sidebar-toggle class="navbar-toggle fa fa-bars" data-toggle="collapse"></i>
+				</div>
+			</div>
+		</div>
+		<div class="topbar-main">
+			<ul class="nav navbar navbar-top-links navbar-right">
+				<li class="dropdown topbar-user">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" >
+						<!--<img ng-src="{{me.headimg}}" class="img-responsive img-circle"/>&nbsp;-->
+						<span class="hidden-xs">{{ me.firstName+me.lastName || me.account }}</span>&nbsp;
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu dropdown-user pull-right">
+						<!--<li><a ui-sref="main.frame.Profile"><i class="fa fa-user"></i>我的信息</a></li>
+						<li><a ui-sref="main.frame.Contact"><i class="fa fa-calendar"></i>联系我们</a></li>
+						<li class="divider"></li>-->
+						<li><a href="#"><i class="fa fa-key"></i>退&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

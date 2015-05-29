@@ -1,0 +1,31 @@
+<div class="graph">
+
+  <!-- popover -->
+  <div class="popover top" ng-show="popoverData.visible" ng-style="popoverData.style">
+    <div class="arrow"></div>
+
+    <div class="popover-inner">
+      <div class="popover-content">
+        <img src="http://www.harpersbazaar.com/cm/harpersbazaar/images/59/hbz-Kate-Hudson-DEC-JAN-2014-001-aiJjXY-sq-xln.jpg" width="150">
+        <p>
+          <strong>Thinking:</strong> {{popover.data.thinking_score}}<br>
+          <strong>Interacting:</strong> {{popover.data.interacting_score}}<br>
+          <strong>Engaging:</strong> {{popover.data.engaging_score[page]}}<br>
+        </p>
+
+        <div class="btn btn-success btn-block">
+          <i class="fa fa-thumbs-o-up"></i> Flag
+        </div>
+
+        <div class="btn btn-warning btn-block">
+          <i class="fa fa-bullseye"></i> Compare
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- axes -->
+  <div class="axes x">{{labelX || 'x axis'}}</div>
+  <div class="axes y">{{labelY || 'y axis'}}</div>
+</div>

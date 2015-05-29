@@ -1,0 +1,9 @@
+<div class="btn-group">
+  <button
+    class="glow large"
+    ng-repeat="(id, name) in model"
+    ng-class="{left:$first, middle:$middle, right:$last}"
+  >
+    {{name}}
+  </button>
+</div>

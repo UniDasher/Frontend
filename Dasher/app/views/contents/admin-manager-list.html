@@ -1,0 +1,127 @@
+<div class="row">
+    <div class="col-lg-8">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">管理员账号管理</div>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>姓名</th>
+                        <th ng-hide="true">LastName</th>
+                        <th>账号</th>
+                        <th>邮件</th>
+                        <th>账号类型</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="data in TypeList">
+                        <td>{{$index+1}}</td>
+                        <td>{{data.firstName}}</td>
+                        <td ng-hide="true">{{data.lastName}}</td>
+                        <td>{{data.account}}</td>
+                        <td>{{data.email}}</td>
+                        <td>{{data.type==0?'超级管理员':'普通管理员'}}</td>
+
+                        <td>
+                            <button type="button" class="btn btn-default btn-xs" ng-click="updateClick($index)"><i class="fa fa-edit"></i>&nbsp;
+                                修改
+                            </button>&nbsp;
+                            <button type="button" class="btn btn-danger btn-xs" ng-click="deleteClick($index,data.id)"><i class="fa fa-trash-o"></i>&nbsp;
+                                删除
+                            </button>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">{{formTitle}}</div>
+            <div class="panel-body pan">
+                <form ng-submit="submit()" ng-keypress="submit($event)" novalidate class="form-horizontal">
+                    <div class="form-body pal">
+
+                        <div class="form-group" ng-hide="ISPasswordHide">
+                            <label class="col-md-3 control-label">账号</label>
+                            <div class="col-md-9">
+                                <div class="input-icon right">
+                                    <input type="text" placeholder="" class="form-control" ng-model="account"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-hide="ISPasswordHide">
+                            <label class="col-md-3 control-label">密码</label>
+                            <div class="col-md-9">
+                                <div class="input-icon right">
+                                    <input type="password" placeholder="" class="form-control" ng-model="password"/>
+                                </div>
+                                <span class="help-block mbn">
+                                    <small>密码长度6-30个字符</small>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-hide="ISPasswordHide">
+                            <label class="col-md-3 control-label">重复密码</label>
+                            <div class="col-md-9">
+                                <div class="input-icon right">
+                                    <input type="password" placeholder="" class="form-control" ng-model="repassword"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">姓名</label>
+                            <div class="col-md-9">
+                                <div class="input-icon right">
+                                    <input type="text" placeholder="" class="form-control" ng-model="firstName"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-hide="true">
+                            <label class="col-md-3 control-label">LastName</label>
+                            <div class="col-md-9">
+                                <div class="input-icon right">
+                                    <input type="text" placeholder="" class="form-control" ng-model="lastName"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">邮件</label>
+                            <div class="col-md-9">
+                                <div class="input-icon right">
+                                    <input type="text" placeholder="" class="form-control" ng-model="email"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">类型</label>
+                            <div class="col-md-9">
+                                <div class="input-icon right">
+                                    <select class="select2-size form-control" ng-model="type">
+                                        <option value="0">超级管理员</option>
+                                        <option value="1">普通管理员</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-actions pal">
+                        <div class="form-group mbn">
+                            <div class="col-md-offset-3 col-md-6">
+                                <button type="submit" class="btn btn-primary">{{formSubmitBtn}}</button>
+                                <button type="button" class="btn btn-default" ng-click="formCancleFun()">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html id="ng-app" ng-app="btApp">
+<head>
+	<title>滴滴送餐</title>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+	<link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+	<link href="bower_components/select2/select2.css" rel="stylesheet">
+	<link href="bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet">
+	<link href="bower_components/jquery-ui/themes/base/jquery-ui.css" rel="stylesheet">
+	<link href="bower_components/font-awesome/css/font-awesome.css" rel="stylesheet">
+	<link href="bower_components/spectrum/spectrum.css" rel="stylesheet">
+	<link href="bower_components/iCheck/skins/all.css" rel="stylesheet"/>
+	<link href="bower_components/pace/themes/blue/pace-theme-center-atom.css" rel="stylesheet" />
+	<link href="bower_components/angular-bootstrap-grid-tree/src/treeGrid.css" rel="stylesheet" />
+    <link href="bower_components/bootstrap-colorpicker/css/colorpicker.css" rel="stylesheet" />
+    <link href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" />
+    <link href="bower_components/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="bower_components/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+    <link href="bower_components/bootstrap-clockface/css/clockface.css" rel="stylesheet" />
+    <link href="bower_components/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" />
+
+    <link href="vendors/jquery-tablesorter/themes/blue/style-custom.css" rel="stylesheet" />
+    <link href="vendors/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+    <link href="vendors/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" />
+    <link href="vendors/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet" />
+    <link href="vendors/jquery-file-upload/css/blueimp-gallery.min.css" rel="stylesheet" />
+    <link href="vendors/jplist/html/css/jplist-custom.css" rel="stylesheet">
+    <link href="vendors/DataTables/media/css/jquery.dataTables.css" rel="stylesheet">
+    <link href="vendors/DataTables/extensions/TableTools/css/dataTables.tableTools.min.css" rel="stylesheet">
+    <link href="vendors/DataTables/media/css/dataTables.bootstrap.css" rel="stylesheet">
+
+
+	<link href="css/style.css" rel="stylesheet">
+
+	<script src="bower_components/jquery/jquery.js"></script>
+	<script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
+	<script src="bower_components/jquery-knob/js/jquery.knob.js"></script>
+	<script src="bower_components/select2/select2.js"></script>
+	<script src="bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js"></script>
+	<script src="bower_components/d3/d3.js"></script>
+	<script src="bower_components/spectrum/spectrum.js"></script>
+	<script src="bower_components/momentjs/moment.js"></script>
+	<script src="bower_components/gsap/src/minified/TweenMax.min.js"></script>
+	<script src="bower_components/gsap/src/minified/TimelineMax.min.js"></script>
+	<script src="bower_components/gsap/src/minified/TimelineLite.min.js"></script>
+	<script src="bower_components/gsap/src/minified/TweenLite.min.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+	<script src="bower_components/angular-messages/angular-messages.js"></script>
+	<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="bower_components/angular-resource/angular-resource.js"></script>
+	<script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script src="bower_components/angular-ui-select2/src/select2.js"></script>
+	<script src="bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput-angular.js"></script>
+	<script src="bower_components/angular-ui-slider/src/slider.js"></script>
+	<script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+	<script src="bower_components/angular-audio-playlist/dist/angular-audio-player.js"></script>
+	<script src="bower_components/angular-knob/src/angular-knob.js"></script>
+	<script src="bower_components/angular-ui-sortable/sortable.js"></script>
+	<script src="bower_components/angular-easyfb/angular-easyfb.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+	<script src="bower_components/angular-bootstrap-grid-tree/src/tree-grid-directive.js"></script>
+
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+    <script src="bower_components/bootstrap-clockface/js/clockface.js"></script>
+    <script src="bower_components/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+    <script src="bower_components/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="vendors/jquery-maskedinput/jquery-maskedinput.js"></script>
+    <script src="vendors/charCount.js"></script>
+
+	<script src="bower_components/iCheck/icheck.min.js"></script>
+	<script src="bower_components/pace/pace.js"></script>
+    <script src="bower_components/angular-ui-utils/event.js"></script>
+    <!--<script src="bower_components/angular-ui-map-baidu/ui-map.js"></script>-->
+    <!--google地图
+    <script src="bower_components/lodash/lodash.js"></script>-->
+
+	<script src="scripts/vendors/util.js"></script>
+	<script src="scripts/app.js"></script>
+	<script src="scripts/filters/_id.js"></script>
+	<script src="scripts/providers/config.js"></script>
+	<script src="scripts/providers/routes.js"></script>
+	<script src="scripts/directives/radio.js"></script>
+	<script src="scripts/directives/icheck.js"></script>
+	<script src="scripts/directives/iradio.js"></script>
+	<script src="scripts/directives/checkbox.js"></script>
+	<script src="scripts/directives/switch.js"></script>
+	<script src="scripts/directives/kc-upload.js"></script>
+	<script src="scripts/directives/challenge-types.js"></script>
+	<script src="scripts/directives/domains.js"></script>
+	<script src="scripts/directives/rate.js"></script>
+	<script src="scripts/directives/document-info.js"></script>
+	<script src="scripts/directives/document-actions.js"></script>
+	<script src="scripts/directives/panel.js"></script>
+	<script src="scripts/directives/image-upload.js"></script>
+	<script src="scripts/directives/video-upload.js"></script>
+	<script src="scripts/directives/audio-upload.js"></script>
+	<script src="scripts/directives/csv-upload.js"></script>
+	<script src="scripts/directives/sortable-table.js"></script>
+	<script src="scripts/directives/no-mousewheel.js"></script>
+	<script src="scripts/directives/dropdown-toggle.js"></script>
+	<script src="scripts/directives/sidebar-toggle.js"></script>
+	<script src="scripts/directives/ui-color-picker.js"></script>
+	<script src="scripts/directives/donut-chart.js"></script>
+	<script src="scripts/directives/char-limit.js"></script>
+	<script src="scripts/directives/button-loading.js"></script>
+	<script src="scripts/directives/totop.js"></script>
+	<script src="scripts/directives/profession-tree.js"></script>
+	<script src="vendors/tree-grid/js/tree-grid-directive.js"></script>
+
+	<script src="scripts/services/session.js"></script>
+	<script src="scripts/services/popup.js"></script>
+	<script src="scripts/services/auth-interceptor.js"></script>
+	<script src="scripts/services/document-manager.js"></script>
+	<script src="scripts/services/chart-one-variable.js"></script>
+	<script src="scripts/services/chart-one-variable-custom.js"></script>
+	<script src="scripts/services/chart-two-variables.js"></script>
+	<script src="scripts/services/table2csv.js"></script>
+	<script src="scripts/services/modal-dialog.js"></script>
+	<script src="scripts/services/navigator.js"></script>
+    <!--送餐开始-->
+
+	<script src="scripts/resources/sign.js"></script>
+    <script src="scripts/resources/ENToEnglish.js"></script>
+    <script src="scripts/resources/MenuManager.js"></script>
+    <script src="scripts/resources/ShopManager.js"></script>
+    <script src="scripts/resources/UserManager.js"></script>
+    <script src="scripts/resources/MenuEvaluateManager.js"></script>
+    <script src="scripts/resources/SettleManager.js"></script>
+    <script src="scripts/resources/ComplainManager.js"></script>
+    <script src="scripts/resources/AdminManager.js"></script>
+    <script src="scripts/resources/MarketManager.js"></script>
+    <script src="scripts/resources/MarketMenuManager.js"></script>
+
+
+    <script src="scripts/controllers/signin.js"></script>
+    <script src="scripts/controllers/frames/main.js"></script>
+    <script src="scripts/controllers/frames/header.js"></script>
+    <script src="scripts/controllers/frames/sidebar.js"></script>
+    <script src="scripts/controllers/frames/navigator.js"></script>
+    <script src="scripts/controllers/frames/footer.js"></script>
+    <script src="scripts/controllers/frames/modal.js"></script>
+    <script src="scripts/controllers/contents/welcome.js"></script>
+    <script src="scripts/controllers/contents/MenuManagerList.js"></script>
+    <script src="scripts/controllers/contents/MenuManagerInfo.js"></script>
+    <script src="scripts/controllers/contents/ShopManagerList.js"></script>
+    <script src="scripts/controllers/contents/ShopManagerInsert.js"></script>
+    <script src="scripts/controllers/contents/ShopManagerUpdate.js"></script>
+    <script src="scripts/controllers/contents/ShopManagerDishUpload.js"></script>
+    <script src="scripts/controllers/contents/ShopManagerDishType.js"></script>
+    <script src="scripts/controllers/contents/ShopManagerDishList.js"></script>
+    <script src="scripts/controllers/contents/ShopManagerDishInsert.js"></script>
+    <script src="scripts/controllers/contents/ShopManagerDishUpdate.js"></script>
+    <script src="scripts/controllers/contents/WaiterManagerList.js"></script>
+    <script src="scripts/controllers/contents/WaiterManagerInfo.js"></script>
+    <script src="scripts/controllers/contents/UserManagerList.js"></script>
+    <script src="scripts/controllers/contents/UserManagerInfo.js"></script>
+    <script src="scripts/controllers/contents/SettleManagerList.js"></script>
+    <script src="scripts/controllers/contents/SettleManagerInfo.js"></script>
+    <script src="scripts/controllers/contents/ComplainManagerList.js"></script>
+    <script src="scripts/controllers/contents/ComplainManagerNinfo.js"></script>
+    <script src="scripts/controllers/contents/AdminManagerList.js"></script>
+    <script src="scripts/controllers/contents/MarketManagerList.js"></script>
+    <script src="scripts/controllers/contents/MarketManagerDishUpload.js"></script>
+    <script src="scripts/controllers/contents/MarketManagerInsert.js"></script>
+    <script src="scripts/controllers/contents/MarketManagerUpdate.js"></script>
+    <script src="scripts/controllers/contents/MarketManagerDishList.js"></script>
+    <script src="scripts/controllers/contents/MarketManagerDishInsert.js"></script>
+    <script src="scripts/controllers/contents/MarketManagerDishUpdate.js"></script>
+    <script src="scripts/controllers/contents/MarketManagerDishType.js"></script>
+    <!--送餐结束-->
+
+	<script src="vendors/tree-grid/js/treeGridTest.js"></script>
+	<script src="scripts/vendors/vivo-common.js"></script>
+    <script src="vendors/responsive-tabs/responsive-tabs.js"></script>
+    <script src="vendors/DataTables/media/js/jquery.dataTables.js"></script>
+    <script src="vendors/jquery-tablesorter/jquery.tablesorter.js"></script>
+    <script src="vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="vendors/DataTables/media/js/dataTables.bootstrap.js"></script>
+    <script src="vendors/DataTables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=B93f03d1f827c064d0bbe87737ce856e"></script>
+    <!--google地图
+    <script src="vendors/angular-google-maps-master/dist/angular-google-maps.js" rel="stylesheet"></script>
+    -->
+    <!--<script src="vendors/angular-paginate-master/js/angular-paginate.js"></script>-->
+
+	<!--<script src="vendors/jplist/html/js/vendor/modernizr.min.js"></script>-->
+	<!--<script src="vendors/jplist/html/js/jplist.min.js"></script>-->
+	<!--pie chart-->
+	<script src="vendors/flot-chart/jquery.flot.js"></script>
+	<script src="vendors/flot-chart/jquery.flot.categories.js"></script>
+	<script src="vendors/flot-chart/jquery.flot.pie.js"></script>
+	<script src="vendors/flot-chart/jquery.flot.tooltip.js"></script>
+	<script src="vendors/flot-chart/jquery.flot.resize.js"></script>
+	<script src="vendors/flot-chart/jquery.flot.fillbetween.js"></script>
+	<script src="vendors/flot-chart/jquery.flot.stack.js"></script>
+	<script src="vendors/flot-chart/jquery.flot.spline.js"></script>
+
+
+</head>
+<body class="animated" ui-view>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<div class="avatar">
+	<div class="deleteBadge" ng-if="model" ng-click="remove()">
+		<i class="fa fa-times fa-fw fa-lg"></i>
+	</div>
+
+	<div
+			class="frame avatar"
+			ng-class="{empty:!model}"
+			ng-style="{
+      backgroundImage: model ? 'url(' + model + ')' : 'none',
+      backgroundColor: color ? color : 'inherit'
+    }"
+			>
+		<div ng-if="!model && !progress" ng-click="selectFile()">
+			<i class="fa {{icon || 'fa-camera-retro'}} fa-3x"></i>
+			<span>{{label || 'upload image'}}</span>
+		</div>
+
+		<div ng-if="progress">
+			<div class="upload-knob">
+				<knob knob-data="progress" data-thickness="0.3" data-width="30" data-height="30" knob-options="knobOptions"></knob>
+			</div>
+			<span>uploading...</span>
+		</div>
+		<input type="file" ng-file-select="onFileSelect($files)">
+	</div>
+</div>

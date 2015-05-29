@@ -1,0 +1,112 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel">
+            <div class="panel-body pan">
+                <div class="profile" style="display: block;">
+                    <div class="user-info">
+                        <div style="margin-bottom: 15px" class="row">
+                            <div class="col-xs-12 col-sm-8"><h2>{{userInfo.firstName+' '+userInfo.lastName}}</h2>
+                                <p><strong>手机:</strong> {{userInfo.mobilePhone}}</p>
+                                <p><strong>余额:</strong> {{userInfo.balance}}</p>
+                                <p><strong>邮件:</strong> {{userInfo.email}}</p>
+                                <p><strong>评价:</strong> {{'好评:'+userInfo.goodEvaluate+'  差评:'+userInfo.badEvaluate}}</p>
+                                <p><strong>地址:</strong> {{userInfo.address}}</p>
+                                <p><strong>创建时间:</strong> {{userInfo.createDate}}</p>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-4 text-center">
+                                <figure><img
+                                        src="{{URl+userInfo.logo}}"
+                                        alt="" style="display: inline-block"
+                                        class="img-responsive img-circle"/>
+                                    <!--<figcaption class="ratings"><p><a href="#"><span
+                                            class="fa fa-star"></span></a><a href="#"><span
+                                            class="fa fa-star"></span></a><a href="#"><span
+                                            class="fa fa-star"></span></a><a href="#"><span
+                                            class="fa fa-star"></span></a><a href="#"><span
+                                            class="fa fa-star-o"></span></a></p></figcaption>-->
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="portlet box">
+            <div class="portlet-header">
+                <div class="caption">接单列表</div>
+            </div>
+
+            <div class="portlet-body">
+                <div class="row mbm">
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                        <div class="col-md-2 control-label">订单类型</div>
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <select class="select2-size form-control input-medium" ng-model="orderType" ng-change="OrderSelect()">
+                                <option value="0" ng-selected="true">饭店订单</option>
+                                <option value="1">超市订单</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>订单编号</th>
+                        <th>下单人</th>
+                        <th>接单人</th>
+                        <th>商家名</th>
+                        <th>商品总价</th>
+                        <th>运费</th>
+                        <th ng-hide="true">TaxesMoney</th>
+                        <th ng-hide="true">ServiceMoney</th>
+                        <th ng-hide="true">TipMoney</th>
+                        <th>支付类型</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    <tbody>
+                    <tr ng-repeat="data in menuLists">
+                        <td>{{$index+1}}</td>
+                        <td>{{data.mid}}</td>
+                        <td>{{data.userName}}</td>
+                        <td>{{data.serverName}}</td>
+                        <td>{{data.marketName||data.shopName}}</td>
+                        <td>{{data.dishsMoney  | currency}}</td>
+                        <td>{{data.carriageMoney  | currency}}</td>
+                        <td ng-hide="true">{{data.taxesMoney  | currency}}</td>
+                        <td ng-hide="true">{{data.serviceMoney  | currency}}</td>
+                        <td ng-hide="true">{{data.tipMoney  | currency}}</td>
+                        <td>{{(data.payType==1)?'线上支付':((data.payType==2)?'线下支付':'未支付')}}</td>
+                        <td>{{data.status}}</td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-xs"><i
+                                    class="fa fa-edit"></i>&nbsp;
+                                详情
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    </thead></table>
+                <div class="row mbm">
+                    <div class="col-lg-12">
+                        <div class="pagination-panel">
+                            当前页
+                            &nbsp;<a href="javascript:void(0);" class="btn btn-sm btn-default btn-prev gw-prev"><i class="fa fa-angle-left"></i></a>&nbsp;
+                            <input type="text" maxlenght="5" value="1" class="pagination-panel-input form-control input-mini input-inline input-sm text-center gw-page"/>&nbsp;
+                            <a href="javascript:void(0);" class="btn btn-sm btn-default btn-prev gw-next"><i class="fa fa-angle-right"></i></a>&nbsp;
+                            总页数 {{totalPage}} | 每页
+                            &nbsp;{{countPage}}&nbsp;
+                            条数据 | 总数据 {{totalCount}} 条
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

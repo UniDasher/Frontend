@@ -1,0 +1,5 @@
+<select ui-select2="opts" ng-model="ngModel" data-placeholder="{{placeholder}}">
+  <option value=""></option>
+  <option ng-if="emptyValue" value="">{{emptyValue}}</option>
+  <option ng-repeat="(id, name) in domains" value="{{id}}">{{name}}</option>
+</select>

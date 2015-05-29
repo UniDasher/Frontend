@@ -1,0 +1,218 @@
+<div id="menumanagerlist" class="row">
+
+    <div class="col-lg-12">
+        <ul id="tableactiondTab" class="nav nav-tabs">
+            <li class="active"><a data-target="#table-new-menu-tab" data-toggle="tab" ng-click="MenuTabClick(1)">新订单</a></li>
+            <li><a data-target="#table-giving-menu-tab" data-toggle="tab" ng-click="MenuTabClick(2)">配送中</a></li>
+            <li><a data-target="#table-over-menu-tab" data-toggle="tab" ng-click="MenuTabClick(3)">已结束</a></li>
+        </ul>
+        <div id="tableactionTabContent" class="tab-content">
+            <div id="table-new-menu-tab" class="tab-pane fade in active">
+                <div class="row">
+                    <div class="portlet box">
+                        <div class="portlet-header">
+                            <div class="caption">用户新下订单</div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row mbm">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <table id="table_id_new"
+                                               class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>订单号</th>
+                                                <th>下单者</th>
+                                                <th>商家</th>
+                                                <th>金额</th>
+                                                <th>餐品数量</th>
+                                                <th>支付方式</th>
+                                                <th>下单时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            <tbody>
+                                            <tr ng-repeat="data in ListsNew">
+                                                <td>{{$index+1}}</td>
+                                                <td>{{data.mid}}</td>
+                                                <td>{{data.userName}}</td>
+                                                <td>{{data.shopName}}</td>
+                                                <td>{{(data.dishsMoney | currency)+'+'+(data.carriageMoney | currency)+'+'+(data.taxesMoney | currency)
+                                                    +'+'+(data.serviceMoney | currency)+'+'+(data.tipMoney | currency)}}</td>
+                                                <td>{{data.menuCount}}</td>
+                                                <td>{{(data.payType==1)?'online pay':'cash pay'}}</td>
+                                                <td>{{data.createDate}}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-default btn-xs" ng-click="ToMenuInfo(data.MID)">
+                                                        <i class="fa fa-edit"></i>&nbsp;详情
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                            </thead></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            <div id="table-giving-menu-tab" class="tab-pane fade">
+                <div class="row">
+                    <div class="portlet box">
+                        <div class="portlet-header">
+                            <div class="caption">配送中的订单</div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row mbm">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <table id="table_id_giving"
+                                               class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 3%; padding: 10px; background: #efefef"><input
+                                                        type="checkbox" class="checkall"/></th>
+                                                <th>#</th>
+                                                <th>订单号</th>
+                                                <th>下单者</th>
+                                                <th>商家</th>
+                                                <th>送餐人</th>
+                                                <th>订单金额</th>
+                                                <th>配送金额</th>
+                                                <th>下单时间</th>
+                                                <th>接单时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            <tbody>
+                                            <tr ng-repeat="data in ListsGiving">
+                                                <td><input type="checkbox"/></td>
+                                                <td>{{$index+1}}</td>
+                                                <td>{{data.MID}}</td>
+                                                <td>{{data.UserName}}</td>
+                                                <td>{{data.ShopName}}</td>
+                                                <td>{{data.WaiterName}}</td>
+                                                <td>{{data.DishsPrice}}</td>
+                                                <td>{{data.ServicePrice  | currency}}</td>
+                                                <td>{{data.CreateDate  | currency}}</td>
+                                                <td>{{data.StartDate}}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-default btn-xs" ng-click="ToMenuInfo(data.MID)"><i
+                                                            class="fa fa-edit"></i>&nbsp;
+                                                        详情
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                            </thead></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="table-over-menu-tab" class="tab-pane fade">
+                <div class="row">
+                    <div class="portlet box">
+                        <div class="portlet-header">
+                            <div class="form-group">
+
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <div class="col-md-2 control-label">商家</div>
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <select class="select2-size form-control input-medium" ng-model="shopSelect" ng-options="m.Name for m in shopSelectData">
+                                            <option value="0">全部</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="col-md-2 control-label">日期</div>
+                                    <div class="col-md-10 input-group input-daterange">
+                                        <input type="text" name="startdate" class="form-control"/>
+                                        <span class="input-group-addon">to</span>
+                                        <input type="text" name="enddate" class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Enter page" class="form-control">
+                                        <span class="input-group-btn">
+                                            <a ng-click="SearchList();" class="btn btn-primary">查询</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row mbm">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <table id="table_id_over"
+                                               class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 3%; padding: 10px; background: #efefef"><input
+                                                        type="checkbox" class="checkall"/></th>
+                                                <th>#</th>
+                                                <th>订单号</th>
+                                                <th>下单者</th>
+                                                <th>商家</th>
+                                                <th>送餐人</th>
+                                                <th>订单金额</th>
+                                                <th>配送金额</th>
+                                                <th>下单时间</th>
+                                                <th>接单时间</th>
+                                                <th>完成时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            <tbody>
+                                            <tr ng-repeat="data in ListsOver">
+                                                <td><input type="checkbox"/></td>
+                                                <td>{{$index+1}}</td>
+                                                <td>{{data.MID}}</td>
+                                                <td>{{data.UserName}}</td>
+                                                <td>{{data.ShopName}}</td>
+                                                <td>{{data.WaiterName}}</td>
+                                                <td>{{data.DishsPrice  | currency}}</td>
+                                                <td>{{data.ServicePrice  | currency}}</td>
+                                                <td>{{data.CreateDate}}</td>
+                                                <td>{{data.StartDate}}</td>
+                                                <td>{{data.EndDate}}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-default btn-xs" ng-click="ToMenuInfo(data.MID)"><i
+                                                            class="fa fa-edit"></i>&nbsp;
+                                                        详情
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                            </thead></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mbm">
+                    <div class="col-lg-12">
+                        <div class="pagination-panel">
+                            当前页
+                            &nbsp;<a href="javascript:void(0);" class="btn btn-sm btn-default btn-prev gw-prev"><i class="fa fa-angle-left"></i></a>&nbsp;
+                            <input type="text" maxlenght="5" value="1" class="pagination-panel-input form-control input-mini input-inline input-sm text-center gw-page"/>&nbsp;
+                            <a href="javascript:void(0);" class="btn btn-sm btn-default btn-prev gw-next"><i class="fa fa-angle-right"></i></a>&nbsp;
+                            总页数 {{totalPage}} | 每页
+                            &nbsp;{{countPage}}&nbsp;
+                            条数据 | 总数据 {{totalCount}} 条
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>

@@ -1,0 +1,104 @@
+#signin-page{
+	background: url('http://nowpfile.b0.upaiyun.com/img/signinBG.jpg') center center fixed;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	padding: 5px;
+	height: 700px;
+
+	.page-form {
+		width: 400px;
+		margin: 5% auto 0 auto;
+		background: #eeeeee;
+		border-radius: 4px;
+		.input-icon{
+			i{
+				margin-top: 12px;
+			}
+		}
+		input[type='text'], input[type='password'], input[type='email'], select{
+			height: 40px;
+			border-color: #e5e5e5;
+			.box-shadow(none);
+			color: @text-color;
+		}
+		.header-content{
+			padding: 15px 20px;
+			background: #e9e9e9;
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;
+			h1{
+				font-family: "冬青黑体", "Microsoft YaHei", "微软雅黑", sans-serif;
+				font-size: 30px;
+				font-weight: bold;
+				text-align: center;
+				margin: 0;
+				text-transform: uppercase;
+			}
+		}
+		.body-content{
+			padding: 15px 20px;
+			position: relative;
+			p{
+				a{
+					color: @brand-primary;
+					&:hover,
+					&:focus{
+						color: #777777;
+						text-decoration: none;
+					}
+				}
+			}
+			hr{
+				border-color: #e0e0e0;
+			}
+		}
+		.state-error + em {
+			display: block;
+			margin-top: 6px;
+			padding: 0 1px;
+			font-style: normal;
+			font-size: 11px;
+			line-height: 15px;
+			color: @brand-danger;
+		}
+		.rating.state-error + em {
+			margin-top: -4px;
+			margin-bottom: 4px;
+		}
+		.state-success + em {
+			display: block;
+			margin-top: 6px;
+			padding: 0 1px;
+			font-style: normal;
+			font-size: 11px;
+			line-height: 15px;
+			color: @brand-danger;
+		}
+		.state-error input, .state-error select{
+			background: @state-danger-bg;
+		}
+		.state-success input, .state-success select{
+			background: @state-success-bg;
+		}
+		.note-success {
+			color: @brand-success;
+		}
+		label{
+			line-height: 20px;
+			font-weight: normal;
+			margin-bottom: 0;
+		}
+	}
+
+	.btn-bg{width: 70px; height: 35px;}
+}
+
+@media only screen and (max-width : 480px) {
+	#signin-page {
+		.page-form {
+			width: 280px;
+		}
+	}
+}
