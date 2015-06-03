@@ -14,6 +14,7 @@ angular.module('btApp').controller('MarketManagerDishUploadController', function
 
     $scope.SMID=$stateParams.SMID;
     $scope.loginAuthCode=session.get('loginAuthCode');
+    $scope.files=null;
 
     $scope.submit = function(e) {
         if (undefined !== e && 13 !== e.which) {
@@ -25,18 +26,20 @@ angular.module('btApp').controller('MarketManagerDishUploadController', function
                 var file = files[i];
                 Upload.upload({
                     url:config.api_uri + '/commodity/file',
-                    fields: {'smid': $scope.SMID},
+                    fields: {'smid': $scope.SMID,'authCode':$scope.loginAuthCode},
                     file: file
                 }).progress(function (evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                     console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
                 }).success(function (data, status, headers, config) {
                     console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                    alert('文件上传成功。');
+                    $state.go('main.frame.MarketManagerDishList',{'SMID':$scope.SMID});
                 });
             }
         }
     };
     $scope.formCancleFun=function(){
-        $state.go('main.frame.MarketManager');
+        $state.go('main.frame.MarketManagerDishList',{'SMID':$scope.SMID});
     };
 });

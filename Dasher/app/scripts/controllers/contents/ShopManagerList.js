@@ -91,7 +91,7 @@ angular.module('btApp').controller('ShopManagerController', function($scope, $in
         else{
             $(".gw-next").removeClass('disabled');
         }
-        $scope.curPage=1;
+        $scope.curPage=page;
     }
 
     $scope.GetList();

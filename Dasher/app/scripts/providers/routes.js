@@ -231,7 +231,7 @@ angular
             }
         };
         this.routes['main.frame.MarketManagerDishUpdate'] = {
-            url: '^/MarketManagerDishUpdate/:SMID',
+            url: '^/MarketManagerDishUpdate/:SMID/:MCID',
             title: '超市餐品修改',
             views: {
                 'content@main': {

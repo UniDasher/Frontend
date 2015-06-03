@@ -45,7 +45,6 @@ angular.module('btApp').controller('ShopManagerDishTypeController', function($sc
     $scope.GetList();
     //分类排序
     $scope.sortClick=function(index,typeId_1,sortNum_1,typeId_2,sortNum_2){
-
         var $post={
             id_1:typeId_1,
             sortNum_1:sortNum_1,
@@ -55,7 +54,6 @@ angular.module('btApp').controller('ShopManagerDishTypeController', function($sc
         };
         ShopManager.typeSort($post,
             function(data){
-
                 if(data.resultCode==0){
                     $scope.TypeList[index].sortNum=sortNum_1;
                     $scope.TypeList[index-1].sortNum=sortNum_2;
@@ -119,7 +117,6 @@ angular.module('btApp').controller('ShopManagerDishTypeController', function($sc
 
         }else{
             //执行新增操作
-
             var $post={
                 name:$scope.typeName,
                 type:1,

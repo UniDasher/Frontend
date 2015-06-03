@@ -116,7 +116,7 @@ angular.module('btApp').controller('MenuManagerController', function($scope, $in
         else{
             $(".gw-next").removeClass('disabled');
         }
-        $scope.curPage=1;
+        $scope.curPage=page;
     }
     $scope.AppendData=function(data){
         if($scope.status==1){

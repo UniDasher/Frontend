@@ -31,6 +31,7 @@ angular.module('btApp').controller('MarketManagerDishUpdateController', function
             function(data){
                 if(data.resultCode==0){
                     $scope.typeSelectData=data.list;
+                    $scope.GetInfo();
                 }else{
                     alert(data.resultDesc);
                     if(data.resultCode==3){
@@ -76,7 +77,6 @@ angular.module('btApp').controller('MarketManagerDishUpdateController', function
             }
         );
     };
-    $scope.GetInfo();
     //修改
     $scope.submit = function(e) {
         if (undefined !== e && 13 !== e.which) {
@@ -91,7 +91,7 @@ angular.module('btApp').controller('MarketManagerDishUpdateController', function
             name:$scope.name,
             price:$scope.price,
             unit:$scope.unit,
-            type:$scope.type.id,
+            typeId:$scope.typeId.id,
             subscribe:$scope.subscribe,
             authCode:$scope.loginAuthCode
         };
@@ -118,7 +118,7 @@ angular.module('btApp').controller('MarketManagerDishUpdateController', function
         $scope.name='';
         $scope.unit='';
         $scope.price='';
-        $scope.type=0;
+        $scope.typeId=0;
         $scope.subscribe='';
     };
     $scope.formCancleFun=function(){

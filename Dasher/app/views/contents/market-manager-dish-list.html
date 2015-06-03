@@ -37,6 +37,7 @@
                     <tr>
                         <th>#</th>
                         <th>商品名</th>
+                        <th>单价</th>
                         <th>单位</th>
                         <th>类型</th>
                         <th>描述</th>
@@ -47,9 +48,10 @@
                     <tr ng-repeat="data in DishsList">
                         <td>{{$index+1}}</td>
                         <td>{{data.name}}</td>
+                        <td>{{data.price}}</td>
                         <td>{{data.unit}}</td>
-                        <td>{{data.type}}</td>
-                        <td>{{data.description}}</td>
+                        <td>{{data.typeName}}</td>
+                        <td>{{data.subscribe}}</td>
                         <td>
                             <button type="button" class="btn btn-default btn-xs" ng-click="updateClick(data.mcid)"><i class="fa fa-edit"></i>&nbsp;
                                 修改

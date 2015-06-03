@@ -1,9 +1,6 @@
 /**
  * Created by Administrator on 2015/4/1.
  */
-/**
- * Created by Administrator on 2015/3/30.
- */
 angular.module('btApp').controller('ShopManagerDishListController', function($scope, $injector,$timeout) {
     var $state = $injector.get('$state');
     var $stateParams = $injector.get('$stateParams');
@@ -17,8 +14,8 @@ angular.module('btApp').controller('ShopManagerDishListController', function($sc
     $scope.loginAuthCode=session.get('loginAuthCode');
     $scope.SID=$stateParams.SID;
     $scope.DishsList=null;
-    $scope.typeSelectData=[{'id':'0','name':'ALL','sortNum':0}];
-    $scope.typeSelect={'id':'0','name':'ALL','sortNum':0};
+    $scope.typeSelectData=[{'id':'','name':'ALL','sortNum':0}];
+    $scope.typeSelect={'id':'','name':'ALL','sortNum':0};
     $scope.totalCount=0;
     $scope.totalPage=0;
     $scope.searchStr='';
@@ -35,14 +32,15 @@ angular.module('btApp').controller('ShopManagerDishListController', function($sc
             function(data){
                 if(data.resultCode==0){
                     //数据归于初始
-                    $scope.typeSelectData=$scope.typeSelectData.concat(data.list);
+                    if(data.list!=null){
+                        $scope.typeSelectData=$scope.typeSelectData.concat(data.list);
+                    }
                 }else{
                     alert(data.resultDesc);
                     if(data.resultCode==3){
                         $state.go('signin');
                     }
                 }
-                //$rootScope.loginAuthCode=data.authCode;
             },function(res){
                 alert(ENToEnglish.netBusy.English);
             }
@@ -80,6 +78,7 @@ angular.module('btApp').controller('ShopManagerDishListController', function($sc
                     $scope.totalPage=0;
                     $scope.curPage=1;
                     $scope.countPage=20;
+                    $(".gw-page").val($scope.curPage);
                     alert(data.resultDesc);
                     if(data.resultCode==3){
                         $state.go('signin');
@@ -124,7 +123,7 @@ angular.module('btApp').controller('ShopManagerDishListController', function($sc
         else{
             $(".gw-next").removeClass('disabled');
         }
-        $scope.curPage=1;
+        $scope.curPage=page;
     }
 
     $scope.GetList();

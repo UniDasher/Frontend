@@ -112,6 +112,7 @@ angular.module('btApp').controller('ShopManagerUpdateController', function($scop
                     $scope.address=data.data.address;
                     $scope.longitude=data.data.longitude;
                     $scope.latitude=data.data.latitude;
+                    $scope.serviceTimes=data.data.serviceTimes;
 
                     //$scope.map = { center: { latitude: $scope.latitude, longitude: $scope.longitude }, zoom: 8 };
                     //$scope.marker.coords={latitude: $scope.latitude,longitude: $scope.longitude};
@@ -168,10 +169,10 @@ angular.module('btApp').controller('ShopManagerUpdateController', function($scop
                     //数据归于初始
                     if($scope.files!=null&&$scope.files!=""){
                         $scope.upload($scope.SID);
+                    }else{
+                        alert(data.resultDesc);
+                        $state.go('main.frame.ShopManager');
                     }
-                    alert(data.resultDesc);
-                    $state.go('main.frame.ShopManager');
-
                 }else{
                     alert(data.resultDesc);
                     if(data.resultCode==3){
@@ -193,13 +194,14 @@ angular.module('btApp').controller('ShopManagerUpdateController', function($scop
                 var file = files[i];
                 Upload.upload({
                     url:config.api_uri + '/shop/upload',
-                    fields: {'sid': sid},
+                    fields: {'sid': sid,'authCode':$scope.loginAuthCode},
                     file: file
                 }).progress(function (evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                     console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
                 }).success(function (data, status, headers, config) {
                     console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                    $state.go('main.frame.ShopManager');
                 });
             }
         }

@@ -91,7 +91,7 @@ angular.module('btApp').controller('MarketManagerController', function($scope, $
         else{
             $(".gw-next").removeClass('disabled');
         }
-        $scope.curPage=1;
+        $scope.curPage=page;
     }
 
     $scope.GetList();

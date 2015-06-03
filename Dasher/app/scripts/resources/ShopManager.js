@@ -54,7 +54,7 @@ angular
                 //餐品管理
                 dishList: {
                     method: 'GET',
-                    url: config.api_uri + '/dish/pc/list'
+                    url: config.api_uri + '/dish/list'
                 },
                 dishDelete: {
                     method: 'POST',

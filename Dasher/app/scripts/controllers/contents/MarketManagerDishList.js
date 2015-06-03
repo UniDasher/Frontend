@@ -17,8 +17,8 @@ angular.module('btApp').controller('MarketManagerDishListController', function($
     $scope.loginAuthCode=session.get('loginAuthCode');
     $scope.SMID=$stateParams.SMID;
     $scope.DishsList=null;
-    $scope.typeSelectData=[{'id':'0','name':'ALL','sortNum':0}];
-    $scope.typeSelect={'id':'0','name':'ALL','sortNum':0};
+    $scope.typeSelectData=[{'id':'','name':'ALL','sortNum':0}];
+    $scope.typeSelect={'id':'','name':'ALL','sortNum':0};
     $scope.totalCount=0;
     $scope.totalPage=0;
     $scope.searchStr='';
@@ -51,9 +51,10 @@ angular.module('btApp').controller('MarketManagerDishListController', function($
     $scope.GetTypeList();
 
     $scope.ToSearchList=function(){
+        $(".gw-page").val(1);
+        $scope.curPage=1;
         $scope.GetList();
     };
-
     //获取商家的餐品列表
     $scope.GetList=function(){
         var $post={
@@ -80,6 +81,7 @@ angular.module('btApp').controller('MarketManagerDishListController', function($
                     $scope.totalPage=0;
                     $scope.curPage=1;
                     $scope.countPage=20;
+                    $(".gw-page").val(1);
                     alert(data.resultDesc);
                     if(data.resultCode==3){
                         $state.go('signin');
@@ -124,7 +126,7 @@ angular.module('btApp').controller('MarketManagerDishListController', function($
         else{
             $(".gw-next").removeClass('disabled');
         }
-        $scope.curPage=1;
+        $scope.curPage=page;
     }
 
     $scope.GetList();

@@ -14,6 +14,7 @@ angular.module('btApp').controller('ShopManagerDishUploadController', function($
 
     $scope.SID=$stateParams.SID;
     $scope.loginAuthCode=session.get('loginAuthCode');
+    $scope.files=null;
 
     $scope.submit = function(e) {
         if (undefined !== e && 13 !== e.which) {
@@ -25,19 +26,22 @@ angular.module('btApp').controller('ShopManagerDishUploadController', function($
                 var file = files[i];
                 Upload.upload({
                     url:config.api_uri + '/dish/file',
-                    fields: {'sid': $scope.SID},
+                    fields: {'sid': $scope.SID,'authCode':$scope.loginAuthCode},
                     file: file
                 }).progress(function (evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                     console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
                 }).success(function (data, status, headers, config) {
                     console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                    alert(data.resultDesc);
+                    if(data.resultCode==0){
+                        $state.go('main.frame.ShopManagerDishList',{'SID':$scope.SID});
+                    }
                 });
             }
         }
-
     };
     $scope.formCancleFun=function(){
-        $state.go('main.frame.ShopManager');
+        $state.go('main.frame.ShopManagerDishList',{'SID':$scope.SID});
     };
 });

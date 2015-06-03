@@ -124,9 +124,7 @@ angular.module('btApp').controller('MarketManagerInsertController', function($sc
                 if(data.resultCode==0){
                     //数据归于初始
                     $scope.emptyForm();
-                    if(confirm(ENToEnglish.marketIsAddDish.English)){
-                        $state.go('main.frame.MarketManagerDishUpload',{'SMID':data.smid});
-                    }
+                    $state.go('main.frame.MarketManager');
                 }else{
                     alert(data.resultDesc);
                     if(data.resultCode==3){

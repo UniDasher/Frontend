@@ -124,11 +124,18 @@ angular.module('btApp').controller('ShopManagerInsertController', function($scop
             function(data){
                 if(data.resultCode==0){
                     //数据归于初始
-                    $scope.upload(data.sid);
+                    var files=$scope.files;
+                    if (files && files.length) {
+                        $scope.upload(data.sid);
+                    }else{
+                        $state.go('main.frame.ShopManager');
+                    }
+
                     $scope.emptyForm();
+                    /*
                     if(confirm(ENToEnglish.shopIsAddDish.English)){
                         $state.go('main.frame.ShopManagerDishUpload',{'SID':data.sid});
-                    }
+                    }*/
                 }else{
                     alert(data.resultDesc);
                     if(data.resultCode==3){
@@ -148,13 +155,14 @@ angular.module('btApp').controller('ShopManagerInsertController', function($scop
                 var file = files[i];
                 Upload.upload({
                     url:config.api_uri + '/shop/upload',
-                    fields: {'sid': sid},
+                    fields: {'sid': sid,'authCode':$scope.loginAuthCode},
                     file: file
                 }).progress(function (evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                     console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
                 }).success(function (data, status, headers, config) {
                     console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                    $state.go('main.frame.ShopManager');
                 });
             }
         }
