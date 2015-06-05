@@ -9,8 +9,20 @@ angular
                 userList: {
                     method: 'GET',
                     url: config.api_uri + '/market/menu/user/list'
+                },
+                list: {
+                    method: 'GET',
+                    url: config.api_uri + '/market/menu/list'
+                },
+                info: {
+                    method: 'GET',
+                    url: config.api_uri + '/market/menu/info'
+                },
+                //获取订餐的菜皮记录信息
+                dishList: {
+                    method: 'GET',
+                    url: config.api_uri + '/market/menu/dish/list'
                 }
-
             }
         )
     });

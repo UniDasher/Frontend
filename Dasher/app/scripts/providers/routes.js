@@ -55,7 +55,7 @@ angular
 				}
 			}
 		};
-
+        //商家订单
         this.routes['main.frame.MenuManager'] = {
             url: '^/MenuManager',
             title: '订单管理',
@@ -74,6 +74,27 @@ angular
                 'content@main': {
                     templateUrl: 'views/contents/menu-manager-info.html',
                     controller: 'MenuManagerInfoController'
+                }
+            }
+        };
+        //超市订单
+        this.routes['main.frame.MarketMenuManager'] = {
+            url: '^/MarketMenuManager',
+            title: '超市订单管理',
+            views: {
+                'content@main': {
+                    templateUrl: 'views/contents/market-menu-manager-list.html',
+                    controller: 'MarketMenuManagerController'
+                }
+            }
+        };
+        this.routes['main.frame.MarketMenuManagerInfo'] = {
+            url: '^/MarketMenuManagerInfo/:MID',
+            title: '超市订单详细信息',
+            views: {
+                'content@main': {
+                    templateUrl: 'views/contents/market-menu-manager-info.html',
+                    controller: 'MarketMenuManagerInfoController'
                 }
             }
         };

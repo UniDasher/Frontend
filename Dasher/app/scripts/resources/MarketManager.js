@@ -10,6 +10,10 @@ angular
                     method: 'GET',
                     url: config.api_uri + '/market/list'
                 },
+                menuList: {
+                    method: 'GET',
+                    url: config.api_uri + '/market/list/menu'
+                },
                 info: {
                     method: 'GET',
                     url: config.api_uri + '/market/info'

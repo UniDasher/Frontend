@@ -10,6 +10,10 @@ angular
                     method: 'GET',
                     url: config.api_uri + '/shop/list'
                 },
+                menuList: {
+                    method: 'GET',
+                    url: config.api_uri + '/shop/menu/list'
+                },
                 delete: {
                     method: 'POST',
                     url: config.api_uri + '/shop/delete'

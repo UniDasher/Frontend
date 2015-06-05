@@ -1,15 +1,15 @@
 /**
- * Created by Administrator on 2015/3/27.
+ * Created by Administrator on 2015/6/4.
  */
-angular.module('btApp').controller('MenuManagerController', function($scope, $injector,$timeout) {
+angular.module('btApp').controller('MarketMenuManagerController', function($scope, $injector,$timeout) {
     var $state = $injector.get('$state');
     var ENToEnglish = $injector.get('ENToEnglish');
-    var MenuManager = $injector.get('MenuManager');
-    var ShopManager= $injector.get('ShopManager');
+    var MarketMenuManager = $injector.get('MarketMenuManager');
+    var MarketManager= $injector.get('MarketManager');
     var session = $injector.get('session');
     var Navigator = $injector.get('Navigator');
     Navigator.enableNavigator(true);
-    Navigator.setNavigatorTitle("订单管理");
+    Navigator.setNavigatorTitle("超市订单管理");
 
     $scope.loginAuthCode=session.get('loginAuthCode');
     //远程访问传递参数
@@ -17,8 +17,8 @@ angular.module('btApp').controller('MenuManagerController', function($scope, $in
     $scope.ListsGiving=null;
     $scope.ListsOver=null;
 
-    $scope.shopSelectData=[{'sid':'','name':'全部'}];
-    $scope.shopSelect={'sid':'','name':'全部'};
+    $scope.marketSelectData=[{'smid':'','name':'全部'}];
+    $scope.marketSelect={'smid':'','name':'全部'};
     $scope.status=1;
     $scope.sid='';
     $scope.searchStr='';
@@ -39,18 +39,18 @@ angular.module('btApp').controller('MenuManagerController', function($scope, $in
             $scope.endDate='';
             $scope.curPage=0;
             $scope.countPage=0;
-            $scope.shopSelect={'sid':'','name':'全部'};
+            $scope.marketSelect={'sid':'','name':'全部'};
         }else if(status==2){
             $scope.searchStr='';
             $scope.startDate='';
             $scope.endDate='';
             $scope.curPage=0;
             $scope.countPage=0;
-            $scope.shopSelect={'sid':'','name':'全部'};
+            $scope.marketSelect={'sid':'','name':'全部'};
         }else{
             $scope.curPage=1;
             $scope.countPage=20;
-            $scope.shopSelect={'sid':'','name':'全部'};
+            $scope.marketSelect={'sid':'','name':'全部'};
             $(".gw-page").val(1);
         }
         $scope.GetList();
@@ -66,7 +66,7 @@ angular.module('btApp').controller('MenuManagerController', function($scope, $in
     $scope.GetList=function(){
         var $post={
             status:$scope.status,
-            sid:$scope.shopSelect.sid,
+            smid:$scope.marketSelect.smid,
             searchStr:$scope.searchStr,
             startDate:$scope.startDate,
             endDate:$scope.endDate,
@@ -74,7 +74,7 @@ angular.module('btApp').controller('MenuManagerController', function($scope, $in
             countPage:$scope.countPage,
             authCode:$scope.loginAuthCode
         };
-        MenuManager.list($post,
+        MarketMenuManager.list($post,
             function(data){
                 if(data.resultCode==0){
                     $scope.AppendData(data);
@@ -144,10 +144,10 @@ angular.module('btApp').controller('MenuManagerController', function($scope, $in
         var $post={
             authCode:$scope.loginAuthCode
         };
-        ShopManager.menuList($post,
+        MarketManager.menuList($post,
             function(data){
                 if(data.resultCode==0){
-                    $scope.shopSelectData=$scope.shopSelectData.concat(data.list);
+                    $scope.marketSelectData=$scope.marketSelectData.concat(data.list);
                 }else{
                     alert(data.resultDesc);
                     if(data.resultCode==3){
@@ -162,7 +162,7 @@ angular.module('btApp').controller('MenuManagerController', function($scope, $in
     $scope.shopList();
 
     $scope.ToMenuInfo=function(MID){
-        $state.go('main.frame.MenuManagerInfo',{'MID':MID});
+        $state.go('main.frame.MarketMenuManagerInfo',{'MID':MID});
     };
     $('.input-daterange').datepicker({
         format: "yyyy-mm-dd"
