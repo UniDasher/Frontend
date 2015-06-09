@@ -29,6 +29,8 @@ angular.module('btApp').controller('ComplainManagerController', function($scope,
     $scope.complainTabClick=function(status){
         $scope.status=status;
         if(status==1){
+            $scope.curPage=0;
+            $scope.countPage=0;
             $scope.GetComplainList();
         }else{
             $scope.totalCount=0;
@@ -36,7 +38,6 @@ angular.module('btApp').controller('ComplainManagerController', function($scope,
             $scope.searchStr='';
             $scope.curPage=1;
             $scope.countPage=20;
-
             $scope.GetDealComplainList();
         }
     };
@@ -54,6 +55,8 @@ angular.module('btApp').controller('ComplainManagerController', function($scope,
     $scope.GetComplainList=function(){
         var $post={
             status:1,
+            curPage:$scope.curPage,
+            countPage:$scope.countPage,
             authCode:$scope.loginAuthCode
         };
         ComplainManager.list($post,
@@ -73,15 +76,16 @@ angular.module('btApp').controller('ComplainManagerController', function($scope,
             }
         );
     };
-    $scope.GetComplainList();
+    $scope.complainTabClick(1);
     $scope.GetDealComplainList=function(){
         var $post={
+            status:2,
             searchStr:$scope.searchStr,
             curPage:$scope.curPage,
             countPage:$scope.countPage,
             authCode:$scope.loginAuthCode
         };
-        ComplainManager.dealList($post,
+        ComplainManager.list($post,
             function(data){
                 if(data.resultCode==0){
                     //获取用户列表
@@ -145,13 +149,38 @@ angular.module('btApp').controller('ComplainManagerController', function($scope,
         $scope.curPage=page;
     }
 
-    $scope.applyInfoClick=function(comId){
-        $state.go('main.frame.ComplainManagerNinfo',{'ComId':comId});
+    $scope.applyInfoClick=function(comId,type){
+        $state.go('main.frame.ComplainManagerNinfo',{'ComId':comId,'ComType':type});
     };
-    $scope.applyRefuseClick=function(comId){
-        alert(comId);
+    $scope.applyRefuseClick=function(comId,type){
+        var $post={
+            comId:comId,
+            type:type,
+            comResult:2,
+            comContent:'投诉驳回',
+            returnMoney:0,
+            deductMoney:0,
+            authCode:$scope.loginAuthCode
+        };
+        ComplainManager.deal($post,
+            function(data){
+                if(data.resultCode==0){
+                    //数据归于初始
+                    alert(data.resultDesc);
+                    $state.go('main.frame.ComplainManager');
+                }else{
+                    alert(data.resultDesc);
+                    if(data.resultCode==3){
+                        $state.go('signin');
+                    }
+                }
+                //$rootScope.loginAuthCode=data.authCode;
+            },function(res){
+                alert(ENToEnglish.netBusy.English);
+            }
+        );
     };
     $scope.ToComDealInfoClick=function(comId){
-        alert(comId);
+        $state.go('main.frame.ComplainManagerDinfo',{'ComId':comId,'ComType':type});
     };
 });

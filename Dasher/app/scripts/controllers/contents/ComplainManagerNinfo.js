@@ -2,6 +2,7 @@
  * Created by Administrator on 2015/4/8.
  */
 angular.module('btApp').controller('ComplainManagerNinfoController', function($scope, $injector,$timeout) {
+    var $state = $injector.get('$state');
     var $stateParams = $injector.get('$stateParams');
     var ComplainManager = $injector.get('ComplainManager');
     var ENToEnglish = $injector.get('ENToEnglish');
@@ -11,18 +12,21 @@ angular.module('btApp').controller('ComplainManagerNinfoController', function($s
     Navigator.setNavigatorTitle("送餐人详细信息");
 
     $scope.ComId=$stateParams.ComId;
+    $scope.type=$stateParams.ComType;
     $scope.loginAuthCode=session.get('loginAuthCode');
 
     $scope.comInfo=null;
     $scope.menuLists=null;
 
     $scope.returnMoney=0;
+    $scope.deductMoney=0;
     $scope.comContent="";
 
     //获取投诉的信息
     $scope.GetInfo=function(){
         var $post={
             comId:$scope.ComId,
+            type:$scope.type,
             authCode:$scope.loginAuthCode
         };
         ComplainManager.info($post,
@@ -61,21 +65,17 @@ angular.module('btApp').controller('ComplainManagerNinfoController', function($s
         }
         var $post={
             comId:$scope.comInfo.comId,
+            type:$scope.comInfo.type,
             comResult:comResult,
             comContent:$scope.comContent,
-            uid:$scope.comInfo.uid,
             returnMoney:$scope.returnMoney,
-            wid:$scope.comInfo.wid,
-            deductMoney:$scope.returnMoney,
-            mid:$scope.comInfo.mid,
-            content:$scope.comInfo.content,
+            deductMoney:$scope.deductMoney,
             authCode:$scope.loginAuthCode
         };
         ComplainManager.deal($post,
             function(data){
                 if(data.resultCode==0){
                     //数据归于初始
-                    $scope.emptyForm();
                     alert(data.resultDesc);
                     $state.go('main.frame.ComplainManager');
                 }else{

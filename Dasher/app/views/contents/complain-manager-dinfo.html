@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-6">
         <div class="panel">
             <div class="panel-heading">用户投诉基本信息</div>
             <div class="panel-body pan">
@@ -64,52 +64,40 @@
         </div>
 
     </div>
-    <div class="col-lg-7">
+    <div class="col-lg-6">
         <div class="panel">
-            <div class="panel-heading">处理操作</div>
+            <div class="panel-heading">投诉处理信息</div>
             <div class="panel-body pan">
-                <form ng-submit="submit()" ng-keypress="submit($event)" novalidate class="form-horizontal form-seperated">
-                    <div class="form-body pal">
+                <form novalidate class="form-horizontal form-seperated">
+                    <div class="form-body">
                         <div class="form-group">
-                            <label class="col-md-3 control-label">投诉人 <span class='require'>*</span></label>
-                            <div class="col-md-9">
-                                {{comInfo.userName}}
-                            </div>
+                            <div class="col-md-4 control-label"><span class="help-block">处理结果:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{comInfo.comResult==1?'通过':'驳回'}}</span></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 control-label">返还金额 <span class='require'>*</span></label>
-                            <div class="col-md-9">
-                                <div class="input-icon">
-                                    <input  type="text" class="form-control" ng-model="returnMoney"/>
-                                </div>
-                            </div>
+                            <div class="col-md-4 control-label"><span class="help-block">投诉人:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{comInfo.userName}}</span></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 control-label"><span class="help-block">返还金额:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{comInfo.returnMoney}}</span></div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-3 control-label">送餐人 <span class='require'>*</span></label>
-                            <div class="col-md-9">
-                                {{comInfo.waiterName}}
-                            </div>
+                            <div class="col-md-4 control-label"><span class="help-block">服务人员姓名:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{comInfo.waiterName}}</span></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 control-label">扣除金额 <span class='require'>*</span></label>
-                            <div class="col-md-9">
-                                <div class="input-icon">
-                                    <input  type="text" class="form-control" ng-model="deductMoney"/>
-                                </div>
-                            </div>
+                            <div class="col-md-4 control-label"><span class="help-block">扣除金额:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{comInfo.deductMoney}}</span></div>
                         </div>
-                        <div class="form-group mbn">
-                            <label class="col-md-3 control-label">处理描述</label>
-                            <div class="col-md-9">
-                                <textarea rows="3" class="form-control" ng-model="comContent"></textarea>
-                            </div>
+                        <div class="form-group">
+                            <div class="col-md-4 control-label"><span class="help-block">处理描述:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{comInfo.comContent}}</span></div>
                         </div>
-                    </div>
-                    <div class="form-actions">
-                        <div class="col-md-offset-3 col-md-9">
-                            <button type="submit" class="btn btn-primary">通过</button>&nbsp;
-                            <button type="button" class="btn btn-green" ng-click="formCancleFun()">拒绝</button>
+                        <div class="form-group">
+                            <div class="col-md-4 control-label"><span class="help-block">处理日期:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{comInfo.updateDate}}</span></div>
                         </div>
                     </div>
                 </form>

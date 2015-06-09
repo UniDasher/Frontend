@@ -21,7 +21,7 @@ angular
                 //获取订餐的菜皮记录信息
                 dishList: {
                     method: 'GET',
-                    url: config.api_uri + '/market/menu/dish/list'
+                    url: config.api_uri + '/market/menu/commodity/list'
                 }
             }
         )

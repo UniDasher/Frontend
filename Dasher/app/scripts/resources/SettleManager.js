@@ -13,6 +13,15 @@ angular
                 userInfoList: {
                     method: 'GET',
                     url: config.api_uri + '/settle/user/info/list'
+                },
+                //用户结算处理
+                userSettleAll: {
+                    method: 'GET',
+                    url: config.api_uri + '/settle/user/all'
+                },
+                userSettle: {
+                    method: 'GET',
+                    url: config.api_uri + '/settle/user'
                 }
             }
         )

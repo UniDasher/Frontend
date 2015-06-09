@@ -338,12 +338,22 @@ angular
             }
         };
         this.routes['main.frame.ComplainManagerNinfo'] = {
-            url: '^/ComplainManagerNinfo/:ComId',
+            url: '^/ComplainManagerNinfo/:ComId/:ComType',
             title: '新投诉处理',
             views: {
                 'content@main': {
                     templateUrl: 'views/contents/complain-manager-ninfo.html',
                     controller: 'ComplainManagerNinfoController'
+                }
+            }
+        };
+        this.routes['main.frame.ComplainManagerDinfo'] = {
+            url: '^/ComplainManagerDinfo/:ComId/:ComType',
+            title: '新投诉处理',
+            views: {
+                'content@main': {
+                    templateUrl: 'views/contents/complain-manager-dinfo.html',
+                    controller: 'ComplainManagerDinfoController'
                 }
             }
         };

@@ -17,6 +17,9 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
     $scope.status=1;
 
     $scope.ListsNew=null;
+    $scope.userNameSearchStr="";
+
+
     $scope.ListsGiving=null;
     $scope.ListsOver=null;
 
@@ -29,7 +32,11 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
     //判断当前的Tab
     $scope.SettleTabClick=function(status){
         $scope.status=status;
+        $(".gw-page").val(1);
         if(status==1){
+            $scope.curPage=1;
+            $scope.countPage=20;
+            $scope.userNameSearchStr="";
             $scope.GetUserList();
         }else if(status==2){
 
@@ -42,6 +49,13 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
 
             $scope.GetUserSettle();
         }
+    };
+    //用户名的模糊查询
+    $scope.searchUser=function(){
+        $scope.curPage=1;
+        $scope.countPage=20;
+        $(".gw-page").val(1);
+        $scope.GetUserList();
     };
 
     $scope.ToSearchList=function(){
@@ -56,14 +70,26 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
     //获取用户余额大于0的用户列表
     $scope.GetUserList=function(){
         var $post={
+            searchStr:$scope.userNameSearchStr,
+            curPage:$scope.curPage,
+            countPage:$scope.countPage,
             authCode:$scope.loginAuthCode
         };
         UserManager.balanceList($post,
             function(data){
                 if(data.resultCode==0){
                     $scope.ListsNew=data.list;
+                    $scope.totalCount=data.count;
+                    $scope.totalPage=(data.count%$scope.countPage==0)?(data.count/$scope.countPage):Math.floor(data.count/$scope.countPage+1);
+                    if($scope.curPage==1){
+                        pager(0);
+                    }
                 }else{
                     $scope.ListsNew=null;
+                    $scope.totalCount=0;
+                    $scope.totalPage=0;
+                    $scope.curPage=1;
+                    $scope.countPage=20;
                     alert(data.resultDesc);
                     if(data.resultCode==3){
                         $state.go('signin');
@@ -114,19 +140,28 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
     $(".gw-prev").click(function(e){
         if(!$(this).hasClass('disabled')){
             pager(-1);
-            $scope.GetUserSettle();
+            tabSelectSettle();
         }
     });
     $(".gw-next").click(function(e){
         if(!$(this).hasClass('disabled')){
             pager(1);
-            $scope.GetUserSettle();
+            tabSelectSettle();
         }
     });
     $(".gw-pageSize").change(function(e){
-        $scope.GetUserSettle();
+        tabSelectSettle();
     });
+    function tabSelectSettle(){
+        var status=$scope.status;
+        if(status==1){
+            $scope.GetUserList();
+        }else if(status==2){
 
+        }else{
+            $scope.GetUserSettle();
+        }
+    }
     function pager(p){
         var page = Math.max(1, (parseInt($(".gw-page").val()) + p));
         $(".gw-page").val(page);
@@ -146,6 +181,56 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
         }
         $scope.curPage=page;
     }
+
+    //用户结算
+    $scope.UserSettleAll=function(){
+        var $post={
+            searchStr:$scope.userNameSearchStr,
+            authCode:$scope.loginAuthCode
+        };
+        SettleManager.userSettleAll($post,
+            function(data){
+                if(data.resultCode==0){
+                    $scope.curPage=1;
+                    $scope.countPage=20;
+                    $scope.userNameSearchStr="";
+                    $(".gw-page").val(1);
+                    $scope.GetUserList();
+                }else{
+                    alert(data.resultDesc);
+                    if(data.resultCode==3){
+                        $state.go('signin');
+                    }
+                }
+            },function(res){
+                alert( ENToEnglish.netBusy.English);
+            }
+        );
+    };
+    $scope.UserSettle=function(uid){
+        var $post={
+            uid:uid,
+            authCode:$scope.loginAuthCode
+        };
+        SettleManager.userSettleAll($post,
+            function(data){
+                if(data.resultCode==0){
+                    $scope.curPage=1;
+                    $scope.countPage=20;
+                    $scope.userNameSearchStr="";
+                    $(".gw-page").val(1);
+                    $scope.GetUserList();
+                }else{
+                    alert(data.resultDesc);
+                    if(data.resultCode==3){
+                        $state.go('signin');
+                    }
+                }
+            },function(res){
+                alert( ENToEnglish.netBusy.English);
+            }
+        );
+    };
 
     $scope.SettleWithDrawClick=function(status){
         alert('同意或拒绝');
