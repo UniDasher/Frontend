@@ -10,9 +10,9 @@ angular
                     method: 'GET',
                     url: config.api_uri + '/settle/user/list'
                 },
-                userInfoList: {
+                serverList: {
                     method: 'GET',
-                    url: config.api_uri + '/settle/user/info/list'
+                    url: config.api_uri + '/settle/server/list'
                 },
                 //用户结算处理
                 userSettleAll: {

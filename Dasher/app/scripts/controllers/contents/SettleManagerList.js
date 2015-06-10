@@ -19,9 +19,16 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
     $scope.ListsNew=null;
     $scope.userNameSearchStr="";
 
-
     $scope.ListsGiving=null;
+    $scope.startDateServer="";
+    $scope.endDateServer="";
+    $scope.searchStrServer="";
+
     $scope.ListsOver=null;
+    $scope.startDateUser="";
+    $scope.endDateUser="";
+    $scope.searchStrUser="";
+
 
     $scope.totalCount=0;
     $scope.totalPage=0;
@@ -39,15 +46,19 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
             $scope.userNameSearchStr="";
             $scope.GetUserList();
         }else if(status==2){
-
-        }else{
-            $scope.totalCount=0;
-            $scope.totalPage=0;
-            $scope.searchStr='';
             $scope.curPage=1;
             $scope.countPage=20;
-
-            $scope.GetUserSettle();
+            $scope.startDateUser="";
+            $scope.endDateUser="";
+            $scope.searchStrUser="";
+            $scope.GetUserSettleList();
+        }else{
+            $scope.startDateServer="";
+            $scope.endDateServer="";
+            $scope.searchStrServer="";
+            $scope.curPage=1;
+            $scope.countPage=20;
+            $scope.GetServerSettleList();
         }
     };
     //用户名的模糊查询
@@ -57,15 +68,19 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
         $(".gw-page").val(1);
         $scope.GetUserList();
     };
-
-    $scope.ToSearchList=function(){
-        $scope.totalCount=0;
-        $scope.totalPage=0;
-        $scope.searchStr='';
+    //用户结算查询
+    $scope.ToSearchUserList=function(){
         $scope.curPage=1;
         $scope.countPage=20;
-
-        $scope.GetUserSettle();
+        $(".gw-page").val(1);
+        $scope.GetUserSettleList();
+    };
+    //系统结算
+    $scope.ToSearchServerList=function(){
+        $scope.curPage=1;
+        $scope.countPage=20;
+        $(".gw-page").val(1);
+        $scope.GetServerSettleList();
     };
     //获取用户余额大于0的用户列表
     $scope.GetUserList=function(){
@@ -101,11 +116,12 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
             }
         );
     };
-    $scope.GetUserList();
-    //获取收支列表
-    $scope.GetUserSettle=function(){
+    //获取用户的结算列表
+    $scope.GetUserSettleList=function(){
         var $post={
-            searchStr:$scope.searchStr,
+            searchStr:$scope.searchStrUser,
+            startDate:$scope.startDateUser,
+            endDate:$scope.endDateUser,
             curPage:$scope.curPage,
             countPage:$scope.countPage,
             authCode:$scope.loginAuthCode
@@ -113,7 +129,6 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
         SettleManager.userList($post,
             function(data){
                 if(data.resultCode==0){
-                    //获取用户列表
                     $scope.ListsOver=data.list;
                     $scope.totalCount=data.count;
                     $scope.totalPage=(data.count%$scope.countPage==0)?(data.count/$scope.countPage):Math.floor(data.count/$scope.countPage+1);
@@ -122,6 +137,41 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
                     }
                 }else{
                     $scope.ListsOver=null;
+                    $scope.totalCount=0;
+                    $scope.totalPage=0;
+                    $scope.curPage=1;
+                    $scope.countPage=20;
+                    alert(data.resultDesc);
+                    if(data.resultCode==3){
+                        $state.go('signin');
+                    }
+                }
+            },function(res){
+                alert( ENToEnglish.netBusy.English);
+            }
+        );
+    };
+    $scope.GetUserList();
+    //获取系统收支列表
+    $scope.GetServerSettleList=function(){
+        var $post={
+            searchStr:$scope.searchStr,
+            curPage:$scope.curPage,
+            countPage:$scope.countPage,
+            authCode:$scope.loginAuthCode
+        };
+        SettleManager.serverList($post,
+            function(data){
+                if(data.resultCode==0){
+                    //获取用户列表
+                    $scope.ListsGiving=data.list;
+                    $scope.totalCount=data.count;
+                    $scope.totalPage=(data.count%$scope.countPage==0)?(data.count/$scope.countPage):Math.floor(data.count/$scope.countPage+1);
+                    if($scope.curPage==1){
+                        pager(0);
+                    }
+                }else{
+                    $scope.ListsGiving=null;
                     $scope.totalCount=0;
                     $scope.totalPage=0;
                     $scope.curPage=1;
@@ -157,9 +207,9 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
         if(status==1){
             $scope.GetUserList();
         }else if(status==2){
-
+            $scope.GetUserSettleList();
         }else{
-            $scope.GetUserSettle();
+            $scope.GetServerSettleList();
         }
     }
     function pager(p){
@@ -212,7 +262,7 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
             uid:uid,
             authCode:$scope.loginAuthCode
         };
-        SettleManager.userSettleAll($post,
+        SettleManager.userSettle($post,
             function(data){
                 if(data.resultCode==0){
                     $scope.curPage=1;
@@ -231,12 +281,15 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
             }
         );
     };
-
+/*
     $scope.SettleWithDrawClick=function(status){
         alert('同意或拒绝');
     };
 
     $scope.ToSettleInfoClick=function(UID){
         $state.go('main.frame.SettleManagerInfo',{'UID':'UID001'});
-    };
+    };*/
+    $('.input-daterange').datepicker({
+        format: "yyyy-mm-dd"
+    });
 });
