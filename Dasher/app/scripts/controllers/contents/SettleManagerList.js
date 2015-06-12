@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2015/4/3.
  */
-angular.module('btApp').controller('SettleManagerController', function($scope,$injector,$timeout) {
+angular.module('btApp').controller('SettleManagerController', function($scope,$injector,$timeout,config) {
     var $state = $injector.get('$state');
     var ENToEnglish = $injector.get('ENToEnglish');
     var SettleManager = $injector.get('SettleManager');
@@ -246,6 +246,8 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
                     $scope.userNameSearchStr="";
                     $(".gw-page").val(1);
                     $scope.GetUserList();
+
+                    location.href=config.api_uri +data.fileName;
                 }else{
                     alert(data.resultDesc);
                     if(data.resultCode==3){
