@@ -12,6 +12,7 @@ angular.module('btApp').controller('ShopManagerUpdateController', function($scop
     Navigator.enableNavigator(true);
     Navigator.setNavigatorTitle("商家信息修改");
 
+    $scope.apiurl=config.api_uri;
     $scope.loginAuthCode=session.get('loginAuthCode');
     $scope.SID=$stateParams.SID;
     $scope.name="";
@@ -24,6 +25,8 @@ angular.module('btApp').controller('ShopManagerUpdateController', function($scop
     $scope.longitude="";
     $scope.latitude="";
     $scope.files=null;
+
+    $scope.shopImg="";
 /*
     $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
 
@@ -93,8 +96,6 @@ angular.module('btApp').controller('ShopManagerUpdateController', function($scop
             }
         });
     }
-
-
     $scope.GetInfo=function(){
         var $post={
             sid:$scope.SID,
@@ -103,7 +104,6 @@ angular.module('btApp').controller('ShopManagerUpdateController', function($scop
         ShopManager.info($post,
             function(data){
                 if(data.resultCode==0){
-
                     //数据归于初始
                     $scope.name=data.data.name;
                     $scope.phone=data.data.phone;
@@ -114,6 +114,7 @@ angular.module('btApp').controller('ShopManagerUpdateController', function($scop
                     $scope.latitude=data.data.latitude;
                     $scope.serviceTimes=data.data.serviceTimes;
 
+                    $scope.shopImg=$scope.apiurl+data.data.logo;
                     //$scope.map = { center: { latitude: $scope.latitude, longitude: $scope.longitude }, zoom: 8 };
                     //$scope.marker.coords={latitude: $scope.latitude,longitude: $scope.longitude};
 
@@ -126,7 +127,6 @@ angular.module('btApp').controller('ShopManagerUpdateController', function($scop
                         $state.go('signin');
                     }
                 }
-                //$rootScope.loginAuthCode=data.authCode;
             },function(res){
                 alert(ENToEnglish.netBusy.English);
             }
@@ -137,7 +137,6 @@ angular.module('btApp').controller('ShopManagerUpdateController', function($scop
         if (undefined !== e && 13 !== e.which) {
             return;
         }
-
         if($scope.name.trim()==""){
             alert(ENToEnglish.shopName.English);
             return ;
@@ -164,7 +163,6 @@ angular.module('btApp').controller('ShopManagerUpdateController', function($scop
         };
         ShopManager.update($post,
             function(data){
-
                 if(data.resultCode==0){
                     //数据归于初始
                     if($scope.files!=null&&$scope.files!=""){
@@ -179,7 +177,6 @@ angular.module('btApp').controller('ShopManagerUpdateController', function($scop
                         $state.go('signin');
                     }
                 }
-                //$rootScope.loginAuthCode=data.authCode;
             },function(res){
                 alert(ENToEnglish.netBusy.English);
             }
@@ -187,7 +184,6 @@ angular.module('btApp').controller('ShopManagerUpdateController', function($scop
     };
 
     $scope.upload = function (sid) {
-
         var files=$scope.files;
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
@@ -206,7 +202,6 @@ angular.module('btApp').controller('ShopManagerUpdateController', function($scop
             }
         }
     };
-
     $scope.formCancleFun=function(){
         $state.go('main.frame.ShopManager');
     };

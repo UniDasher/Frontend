@@ -65,7 +65,13 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">商家图片</label>
                             <div class="col-md-9">
-                                <input type="file" ngf-select ng-model="files"/>
+                                <div class="col-md-3 img left">
+                                    <img ng-src="{{shopImg}}"/>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="file" ngf-select ng-model="files"/>
+                                </div>
+
                             </div>
                         </div>
                     </div>

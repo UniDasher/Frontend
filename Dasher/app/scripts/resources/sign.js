@@ -9,7 +9,7 @@ angular
 				},
 				signout: {
 					method: 'GET',
-					url: config.api_uri + '/admin/signout'
+					url: config.api_uri + '/admin/logout'
 				}
 			}
 		)

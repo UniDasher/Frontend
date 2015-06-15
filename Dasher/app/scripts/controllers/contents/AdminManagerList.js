@@ -102,11 +102,6 @@ angular.module('btApp').controller('AdminManagerController', function($scope, $i
                 alert(ENToEnglish.firstName.English);
                 return;
             }
-            /*
-            if($scope.lastName.trim()==''){
-                alert(ENToEnglish.lastName.English);
-                return;
-            }*/
             if($scope.email.trim()==''){
                 alert(ENToEnglish.email[0].English);
                 return;
@@ -157,22 +152,17 @@ angular.module('btApp').controller('AdminManagerController', function($scope, $i
                 return;
             }
             if($scope.password.length<6||$scope.password.length>30){
-                alert(ENToEnglish.password[2].English);
+                alert(ENToEnglish.password[1].English);
                 return;
             }
             if($scope.password.trim()!=$scope.repassword.trim()){
-                alert(ENToEnglish.password[3].English);
+                alert(ENToEnglish.password[2].English);
                 return;
             }
             if($scope.firstName.trim()==''){
                 alert(ENToEnglish.firstName.English);
                 return;
             }
-            /*
-            if($scope.lastName.trim()==''){
-                alert(ENToEnglish.lastName.English);
-                return;
-            }*/
             if($scope.email.trim()==''){
                 alert(ENToEnglish.email[0].English);
                 return;
