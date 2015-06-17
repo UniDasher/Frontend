@@ -6,5 +6,5 @@ angular
 
 		$timeout(function() {
 			$state.go('main.frame.MenuManager');
-		}, 2000)
+		}, 200);
 	});

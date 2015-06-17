@@ -47,7 +47,7 @@
                         <div class="col-md-2 control-label">订单类型</div>
                         <div class="col-md-8 col-sm-8 col-xs-8">
                             <select class="select2-size form-control input-medium" ng-model="orderType" ng-change="OrderSelect()">
-                                <option value="0" ng-selected="true">饭店订单</option>
+                                <option value="0" ng-selected="true">餐厅订单</option>
                                 <option value="1">超市订单</option>
                             </select>
                         </div>
@@ -66,9 +66,9 @@
                         <th ng-hide="true">TaxesMoney</th>
                         <th ng-hide="true">ServiceMoney</th>
                         <th ng-hide="true">TipMoney</th>
-                        <th>PayType</th>
-                        <th>Status</th>
-                        <th>Options</th>
+                        <th>支付类型</th>
+                        <th>订单状态</th>
+                        <th>操作</th>
                     </tr>
                     <tbody>
                     <tr ng-repeat="data in menuLists">
