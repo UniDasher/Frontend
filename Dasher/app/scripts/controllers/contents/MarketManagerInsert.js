@@ -100,10 +100,11 @@ angular.module('btApp').controller('MarketManagerInsertController', function($sc
             alert(ENToEnglish.shopName.English);
             return ;
         }
+        /*
         if($scope.email.trim()!=""&&!$scope.email.match(/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/)){
             alert(ENToEnglish.email[1].English);
             return;
-        }
+        }*/
         if($scope.address.trim()==""){
             alert(ENToEnglish.shopAddress.English);
             return;

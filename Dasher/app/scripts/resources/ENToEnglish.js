@@ -27,6 +27,62 @@ angular
             'shopName':{'English':'商家名不可为空。'},
             'shopAddress':{'English':'商家地址不可为空。'},
             'shopIsAddDish':{'English':'商家新增成功，是否继续添加商家餐品。'},
+            'shopBusinessTime_1':[
+                {'English':'周一时间段一设置出错。'},
+                {'English':'周一时间段二设置出错。'},
+                {'English':'周一时间段三设置出错。'},
+                {'English':'周一时间段四设置出错。'},
+                {'English':'周一时间段五设置出错。'},
+                {'English':'周一营业时间段尚未设置或设置出错。'}
+            ],
+            'shopBusinessTime_2':[
+                {'English':'周二时间段一设置出错。'},
+                {'English':'周二时间段二设置出错。'},
+                {'English':'周二时间段三设置出错。'},
+                {'English':'周二时间段四设置出错。'},
+                {'English':'周二时间段五设置出错。'},
+                {'English':'周二营业时间段尚未设置或设置出错。'}
+            ],
+            'shopBusinessTime_3':[
+                {'English':'周三时间段一设置出错。'},
+                {'English':'周三时间段二设置出错。'},
+                {'English':'周三时间段三设置出错。'},
+                {'English':'周三时间段四设置出错。'},
+                {'English':'周三时间段五设置出错。'},
+                {'English':'周三营业时间段尚未设置或设置出错。'}
+            ],
+            'shopBusinessTime_4':[
+                {'English':'周四时间段一设置出错。'},
+                {'English':'周四时间段二设置出错。'},
+                {'English':'周四时间段三设置出错。'},
+                {'English':'周四时间段四设置出错。'},
+                {'English':'周四时间段五设置出错。'},
+                {'English':'周四营业时间段尚未设置或设置出错。'}
+            ],
+            'shopBusinessTime_5':[
+                {'English':'周五时间段一设置出错。'},
+                {'English':'周五时间段二设置出错。'},
+                {'English':'周五时间段三设置出错。'},
+                {'English':'周五时间段四设置出错。'},
+                {'English':'周五时间段五设置出错。'},
+                {'English':'周五营业时间段尚未设置或设置出错。'}
+            ],
+            'shopBusinessTime_6':[
+                {'English':'周六时间段一设置出错。'},
+                {'English':'周六时间段二设置出错。'},
+                {'English':'周六时间段三设置出错。'},
+                {'English':'周六时间段四设置出错。'},
+                {'English':'周六时间段五设置出错。'},
+                {'English':'周六营业时间段尚未设置或设置出错。'}
+            ],
+            'shopBusinessTime_7':[
+                {'English':'周日时间段一设置出错。'},
+                {'English':'周日时间段二设置出错。'},
+                {'English':'周日时间段三设置出错。'},
+                {'English':'周日时间段四设置出错。'},
+                {'English':'周日时间段五设置出错。'},
+                {'English':'周日营业时间段尚未设置或设置出错。'}
+            ],
             //商家餐品分类管理
             'dishTypeName':{'English':'分类名不可为空。'},
             //商家餐品管理

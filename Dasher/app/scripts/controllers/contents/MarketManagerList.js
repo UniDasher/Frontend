@@ -127,5 +127,7 @@ angular.module('btApp').controller('MarketManagerController', function($scope, $
     $scope.toDishManagerClick=function(SMID){
         $state.go('main.frame.MarketManagerDishList',{'SMID':SMID});
     };
-
+    $scope.toShopTimesClick=function(SMID){
+        $state.go('main.frame.MarketManagerTimes',{'SMID':SMID});
+    };
 });

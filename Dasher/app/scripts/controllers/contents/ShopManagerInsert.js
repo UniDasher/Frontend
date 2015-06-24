@@ -21,6 +21,7 @@ angular.module('btApp').controller('ShopManagerInsertController', function($scop
     $scope.address="";
     $scope.longitude="";
     $scope.latitude="";
+
 /*Google地图
     $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
 
@@ -101,14 +102,16 @@ angular.module('btApp').controller('ShopManagerInsertController', function($scop
             alert(ENToEnglish.shopName.English);
             return ;
         }
+        /*
         if($scope.email.trim()!=""&&!$scope.email.match(/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/)){
             alert(ENToEnglish.email[1].English);
             return;
-        }
+        }*/
         if($scope.address.trim()==""){
             alert(ENToEnglish.shopAddress.English);
             return;
         }
+
         var $post={
             name:$scope.name,
             phone:$scope.phone,

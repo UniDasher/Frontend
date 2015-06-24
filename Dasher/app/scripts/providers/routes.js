@@ -169,6 +169,16 @@ angular
                 }
             }
         };
+        this.routes['main.frame.ShopManagerTimes'] = {
+            url: '^/ShopManagerTimes/:SID',
+            title: '商家营业时间管理',
+            views: {
+                'content@main': {
+                    templateUrl: 'views/contents/shop-manager-times.html',
+                    controller: 'ShopManagerTimesController'
+                }
+            }
+        };
         this.routes['main.frame.ShopManagerDishInsert'] = {
             url: '^/ShopManagerDishInsert/:SID',
             title: '商家餐品新增',
@@ -208,6 +218,16 @@ angular
                 'content@main': {
                     templateUrl: 'views/contents/market-manager-insert.html',
                     controller: 'MarketManagerInsertController'
+                }
+            }
+        };
+        this.routes['main.frame.MarketManagerTimes'] = {
+            url: '^/MarketManagerTimes/:SMID',
+            title: '超市营业时间',
+            views: {
+                'content@main': {
+                    templateUrl: 'views/contents/market-manager-times.html',
+                    controller: 'MarketManagerTimesController'
                 }
             }
         };

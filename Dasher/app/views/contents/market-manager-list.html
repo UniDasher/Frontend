@@ -33,10 +33,10 @@
                         <th width="3%">#</th>
                         <th>超市名</th>
                         <th>电话</th>
-                        <th>邮件</th>
+                        <!--<th>邮件</th>-->
                         <th>好评数</th>
                         <th>差评数</th>
-                        <th>营业时间</th>
+                        <!--<th>营业时间</th>-->
                         <th>地址</th>
                         <th>操作</th>
                     </tr>
@@ -49,10 +49,10 @@
                         <td>{{$index+1}}</td>
                         <td>{{data.name}}</td>
                         <td>{{data.phone}}</td>
-                        <td>{{data.email}}</td>
+                        <!--<td>{{data.email}}</td>-->
                         <td>{{data.goodEvaluate}}</td>
                         <td>{{data.badEvaluate}}</td>
-                        <td>{{data.serviceTime}}</td>
+                        <!--<td>{{data.serviceTime}}</td>-->
                         <td>{{data.address}}</td>
                         <td>
                             <button type="button" class="btn btn-default btn-xs" ng-click="updateClick(data.smid)"><i class="fa fa-edit"></i>&nbsp;
@@ -63,6 +63,9 @@
                             </button>
                             <button type="button" class="btn btn-success btn-xs" ng-click="toDishManagerClick(data.smid)"><i class="fa fa-cog"></i>&nbsp;
                                 商品管理
+                            </button>
+                            <button type="button" class="btn btn-success btn-xs" ng-click="toShopTimesClick(data.smid)"><i class="fa fa-cog"></i>&nbsp;
+                                营业时间
                             </button>
                         </td>
                     </tr>

@@ -128,5 +128,7 @@ angular.module('btApp').controller('ShopManagerController', function($scope, $in
     $scope.toDishManagerClick=function(SID){
         $state.go('main.frame.ShopManagerDishList',{'SID':SID});
     };
-
+    $scope.toShopTimesClick=function(SID){
+        $state.go('main.frame.ShopManagerTimes',{'SID':SID});
+    };
 });
