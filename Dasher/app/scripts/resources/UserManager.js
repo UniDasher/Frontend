@@ -24,6 +24,16 @@ angular
                 balanceList: {
                     method: 'GET',
                     url: config.api_uri + '/user/list/balance'
+                },
+                //获取申请列表
+                applyList: {
+                    method: 'GET',
+                    url: config.api_uri + '/user/list/apply'
+                },
+                //用户状态修改接口
+                applyStatus: {
+                    method: 'POST',
+                    url: config.api_uri + '/user/update/apply'
                 }
             }
         )

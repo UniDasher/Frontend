@@ -11,16 +11,63 @@ angular.module('btApp').controller('WaiterManagerController', function($scope, $
     Navigator.setNavigatorTitle("送餐人管理");
 
     $scope.loginAuthCode=session.get('loginAuthCode');
+    //远程访问传递参数
+    $scope.status=1;
+
     $scope.userLists=null;
+    $scope.applyLists=null;
+
     $scope.totalCount=0;
     $scope.totalPage=0;
     $scope.searchStr='';
     $scope.curPage=1;
     $scope.countPage=20;
 
+    $scope.complainTabClick=function(status){
+        $scope.status=status;
+        if(status==1){
+            $scope.curPage=0;
+            $scope.countPage=0;
+            $scope.GetApplyList();
+        }else{
+            $scope.totalCount=0;
+            $scope.totalPage=0;
+            $scope.searchStr='';
+            $scope.curPage=1;
+            $scope.countPage=20;
+            $(".gw-page").val($scope.curPage);
+            $scope.GetList();
+        }
+    };
+    $scope.GetApplyList=function(){
+        var $post={
+            authCode:$scope.loginAuthCode
+        };
+        UserManager.applyList($post,
+            function(data){
+                if(data.resultCode==0){
+                    //获取用户列表
+                    $scope.applyLists=data.list;
+                }else{
+                    $scope.applyLists=null;
+                    alert(data.resultDesc);
+                    if(data.resultCode==3){
+                        $state.go('signin');
+                    }
+                }
+                //$rootScope.loginAuthCode=data.authCode;
+            },function(res){
+                alert( ENToEnglish.netBusy.English);
+            }
+        );
+    };
+
     //获取用户的列表
     $scope.ToSearchList=function(){
         $scope.curPage=1;
+        $scope.totalCount=0;
+        $scope.totalPage=0;
+        $(".gw-page").val($scope.curPage);
         $scope.GetList();
     }
     $scope.GetList=function(){
@@ -93,15 +140,11 @@ angular.module('btApp').controller('WaiterManagerController', function($scope, $
         }
         $scope.curPage=page;
     }
-
-    $scope.GetList();
-
+    $scope.GetApplyList();
 
     $scope.ToUserInfoClick=function(UID){
         $state.go('main.frame.WaiterManagerInfo',{'UID':UID});
     };
-
-
     $scope.applyFreezeClick=function(index,UID,status){
         var upStatus=(status==2)?3:2;
         var msg=(status==2)?ENToEnglish.freezeConfirm.English:ENToEnglish.unFreezeConfirm.English;
@@ -130,4 +173,31 @@ angular.module('btApp').controller('WaiterManagerController', function($scope, $
         }
     };
 
+    $scope.toApplyClick=function(index,UID,status){
+        var upStatus=status;
+        var msg=(status==2)?ENToEnglish.applyConfirm.English:ENToEnglish.unApplyConfirm.English;
+        if(confirm(msg)){
+            var $post={
+                uid:UID,
+                status:upStatus,
+                authCode:$scope.loginAuthCode
+            };
+            UserManager.applyStatus($post,
+                function(data){
+                    if(data.resultCode==0){
+                        //获取用户列表
+                        $scope.applyLists.splice(index,1);
+                    }else{
+                        alert(data.resultDesc);
+                        if(data.resultCode==3){
+                            $state.go('signin');
+                        }
+                    }
+                },function(res){
+                    alert( ENToEnglish.netBusy.English);
+                }
+            );
+        }
+
+    };
 });

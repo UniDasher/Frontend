@@ -48,7 +48,7 @@ angular.module('btApp').controller('ComplainManagerController', function($scope,
         $scope.searchStr='';
         $scope.curPage=1;
         $scope.countPage=20;
-
+        $(".gw-page").val($scope.curPage);
         $scope.GetDealComplainList();
     };
 

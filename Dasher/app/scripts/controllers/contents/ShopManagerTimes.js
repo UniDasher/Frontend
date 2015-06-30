@@ -623,7 +623,7 @@ angular.module('btApp').controller('ShopManagerTimesController', function($scope
                         $scope.timeSelect_5_5_2=time_5.time5!=''?$scope.timesSelectData[GettimesSelectDataIndex(time_5.time5.split('-')[1])]:{'id':0,'name':''};
 
                         $scope.openSelect_6=time_6.flag;
-                        $scope.timeSelect_61_1=time_6.time1!=''?$scope.timesSelectData[GettimesSelectDataIndex(time_6.time1.split('-')[0])]:{'id':0,'name':''};
+                        $scope.timeSelect_6_1_1=time_6.time1!=''?$scope.timesSelectData[GettimesSelectDataIndex(time_6.time1.split('-')[0])]:{'id':0,'name':''};
                         $scope.timeSelect_6_1_2=time_6.time1!=''?$scope.timesSelectData[GettimesSelectDataIndex(time_6.time1.split('-')[1])]:{'id':0,'name':''};
                         $scope.timeSelect_6_2_1=time_6.time2!=''?$scope.timesSelectData[GettimesSelectDataIndex(time_6.time2.split('-')[0])]:{'id':0,'name':''};
                         $scope.timeSelect_6_2_2=time_6.time2!=''?$scope.timesSelectData[GettimesSelectDataIndex(time_6.time2.split('-')[1])]:{'id':0,'name':''};

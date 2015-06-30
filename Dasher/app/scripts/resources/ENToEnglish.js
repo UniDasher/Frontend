@@ -9,6 +9,8 @@ angular
             'deleteConfirm':{'English':'您确定删除选中的数据吗？'},
             'freezeConfirm':{'English':'您确定冻结选中的用户吗？'},
             'unFreezeConfirm':{'English':'您确定解冻选中的用户吗？'},
+            'applyConfirm':{'English':'您确定同意用户的申请吗？'},
+            'unApplyConfirm':{'English':'您确定拒绝用户的申请吗？'},
             'netBusy':{'English':'网络异常，访问失败。'},
             //管理员账号管理
             'account':{'English':'账号不可为空。'},
