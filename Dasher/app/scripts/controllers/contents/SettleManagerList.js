@@ -44,6 +44,7 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
             $scope.curPage=1;
             $scope.countPage=20;
             $scope.userNameSearchStr="";
+            $(".gw-page").val(1);
             $scope.GetUserList();
         }else if(status==2){
             $scope.curPage=1;
@@ -51,6 +52,7 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
             $scope.startDateUser="";
             $scope.endDateUser="";
             $scope.searchStrUser="";
+            $(".gw-page").val(1);
             $scope.GetUserSettleList();
         }else{
             $scope.startDateServer="";
@@ -58,6 +60,7 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
             $scope.searchStrServer="";
             $scope.curPage=1;
             $scope.countPage=20;
+            $(".gw-page").val(1);
             $scope.GetServerSettleList();
         }
     };
@@ -272,6 +275,7 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
                     $scope.userNameSearchStr="";
                     $(".gw-page").val(1);
                     $scope.GetUserList();
+                    location.href=config.api_uri +data.fileName;
                 }else{
                     alert(data.resultDesc);
                     if(data.resultCode==3){

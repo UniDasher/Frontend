@@ -40,7 +40,6 @@ angular.module('btApp').controller('ComplainManagerNinfoController', function($s
                         $state.go('signin');
                     }
                 }
-                //$rootScope.loginAuthCode=data.authCode;
             },function(res){
                 alert( ENToEnglish.netBusy.English);
             }
@@ -65,6 +64,7 @@ angular.module('btApp').controller('ComplainManagerNinfoController', function($s
         }
         var $post={
             comId:$scope.comInfo.comId,
+            comType:$scope.comInfo.comType,
             type:$scope.comInfo.type,
             comResult:comResult,
             comContent:$scope.comContent,
@@ -84,7 +84,6 @@ angular.module('btApp').controller('ComplainManagerNinfoController', function($s
                         $state.go('signin');
                     }
                 }
-                //$rootScope.loginAuthCode=data.authCode;
             },function(res){
                 alert(ENToEnglish.netBusy.English);
             }

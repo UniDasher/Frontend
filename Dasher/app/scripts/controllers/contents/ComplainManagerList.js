@@ -4,14 +4,14 @@
 /**
  * Created by Administrator on 2015/4/1.
  */
-angular.module('btApp').controller('ComplainManagerController', function($scope, $injector,$timeout) {
+angular.module('btApp').controller('ComplainManagerController', function($scope, $injector,$timeout,config) {
     var $state = $injector.get('$state');
     var ComplainManager = $injector.get('ComplainManager');
     var ENToEnglish = $injector.get('ENToEnglish');
     var session = $injector.get('session');
     var Navigator = $injector.get('Navigator');
     Navigator.enableNavigator(true);
-    Navigator.setNavigatorTitle("投诉管理");
+    Navigator.setNavigatorTitle("退款管理");
 
     $scope.loginAuthCode=session.get('loginAuthCode');
     //远程访问传递参数
@@ -26,11 +26,17 @@ angular.module('btApp').controller('ComplainManagerController', function($scope,
     $scope.curPage=1;
     $scope.countPage=20;
 
+    $scope.startDate="";
+    $scope.endDate="";
+
     $scope.complainTabClick=function(status){
         $scope.status=status;
         if(status==1){
             $scope.curPage=0;
             $scope.countPage=0;
+            $scope.startDate="";
+            $scope.endDate="";
+            $scope.searchStr='';
             $scope.GetComplainList();
         }else{
             $scope.totalCount=0;
@@ -38,6 +44,9 @@ angular.module('btApp').controller('ComplainManagerController', function($scope,
             $scope.searchStr='';
             $scope.curPage=1;
             $scope.countPage=20;
+            $scope.startDate="";
+            $scope.endDate="";
+            $(".gw-page").val($scope.curPage);
             $scope.GetDealComplainList();
         }
     };
@@ -45,7 +54,6 @@ angular.module('btApp').controller('ComplainManagerController', function($scope,
     $scope.ToSearchList=function(){
         $scope.totalCount=0;
         $scope.totalPage=0;
-        $scope.searchStr='';
         $scope.curPage=1;
         $scope.countPage=20;
         $(".gw-page").val($scope.curPage);
@@ -55,6 +63,9 @@ angular.module('btApp').controller('ComplainManagerController', function($scope,
     $scope.GetComplainList=function(){
         var $post={
             status:1,
+            searchStr:$scope.searchStr,
+            startDate:$scope.startDate,
+            endDate:$scope.endDate,
             curPage:$scope.curPage,
             countPage:$scope.countPage,
             authCode:$scope.loginAuthCode
@@ -81,6 +92,8 @@ angular.module('btApp').controller('ComplainManagerController', function($scope,
         var $post={
             status:2,
             searchStr:$scope.searchStr,
+            startDate:$scope.startDate,
+            endDate:$scope.endDate,
             curPage:$scope.curPage,
             countPage:$scope.countPage,
             authCode:$scope.loginAuthCode
@@ -152,12 +165,12 @@ angular.module('btApp').controller('ComplainManagerController', function($scope,
     $scope.applyInfoClick=function(comId,type){
         $state.go('main.frame.ComplainManagerNinfo',{'ComId':comId,'ComType':type});
     };
-    $scope.applyRefuseClick=function(comId,type){
+    $scope.applyRefuseClick=function(index,comId,type){
         var $post={
             comId:comId,
             type:type,
             comResult:2,
-            comContent:'投诉驳回',
+            comContent:'退款驳回',
             returnMoney:0,
             deductMoney:0,
             authCode:$scope.loginAuthCode
@@ -165,9 +178,9 @@ angular.module('btApp').controller('ComplainManagerController', function($scope,
         ComplainManager.deal($post,
             function(data){
                 if(data.resultCode==0){
-                    //数据归于初始
                     alert(data.resultDesc);
-                    $state.go('main.frame.ComplainManager');
+                    $scope.ListsNew.splice(index,1);
+                    location.href=config.api_uri +data.fileName;
                 }else{
                     alert(data.resultDesc);
                     if(data.resultCode==3){
@@ -183,4 +196,36 @@ angular.module('btApp').controller('ComplainManagerController', function($scope,
     $scope.ToComDealInfoClick=function(comId){
         $state.go('main.frame.ComplainManagerDinfo',{'ComId':comId,'ComType':type});
     };
+    $scope.refundClick=function(index,comId,type,dishsMoney,carriageMoney){
+        var $post={
+            comId:comId,
+            type:type,
+            comResult:1,
+            comContent:'退款通过',
+            returnMoney:dishsMoney+carriageMoney,
+            deductMoney:0,
+            authCode:$scope.loginAuthCode
+        };
+        ComplainManager.deal($post,
+            function(data){
+                if(data.resultCode==0){
+                    //数据归于初始
+                    alert(data.resultDesc);
+                    $scope.ListsNew.splice(index,1);
+                    location.href=config.api_uri +data.fileName;
+                }else{
+                    alert(data.resultDesc);
+                    if(data.resultCode==3){
+                        $state.go('signin');
+                    }
+                }
+                //$rootScope.loginAuthCode=data.authCode;
+            },function(res){
+                alert(ENToEnglish.netBusy.English);
+            }
+        );
+    };
+    $('.input-daterange').datepicker({
+        format: "yyyy-mm-dd"
+    });
 });

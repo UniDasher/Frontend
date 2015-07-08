@@ -37,17 +37,17 @@
                                                 <th>#</th>
                                                 <th>用户名</th>
                                                 <th>手机号</th>
-                                                <th>账户余额</th>
-                                                <th>提款账号类型</th>
-                                                <th>提款账号</th>
+                                                <th>本期余额</th>
+                                                <th>收款账号类型</th>
+                                                <th>收款账号</th>
                                                 <th>操作</th>
                                             </tr>
                                             <tbody>
                                             <tr ng-repeat="data in ListsNew">
                                                 <td>{{$index+1}}</td>
-                                                <td>{{data.firstName+' '+data.lastName}}</td>
+                                                <td>{{data.firstName+data.lastName}}</td>
                                                 <td>{{data.mobilePhone}}</td>
-                                                <td>{{data.balance | currency}}</td>
+                                                <td>{{data.balance}}</td>
                                                 <td>{{data.bankType}}</td>
                                                 <td>{{data.bankAccount}}</td>
                                                 <td>
@@ -133,7 +133,7 @@
                                                 <td>{{data.settleNumberType}}</td>
                                                 <td>{{data.settleNumber}}</td>
                                                 <td>{{data.settleDesc}}</td>
-                                                <td>{{data.createDate}}</td>
+                                                <td>{{data.createDate|brDateFilter}}</td>
                                             </tr>
                                             </tbody>
                                             </thead></table>
@@ -193,8 +193,8 @@
                                                 <th>金额</th>
                                                 <th>用户名</th>
                                                 <th>用户手机</th>
-                                                <th>收支类别</th>
-                                                <th>类别账号</th>
+                                                <th>账号类别</th>
+                                                <th>账号</th>
                                                 <th>说明</th>
                                                 <th>操作时间</th>
                                             </tr>
@@ -209,7 +209,7 @@
                                                 <td>{{data.settleNumberType}}</td>
                                                 <td>{{data.settleNumber}}</td>
                                                 <td>{{data.settleDesc}}</td>
-                                                <td>{{data.createDate}}</td>
+                                                <td>{{data.createDate|brDateFilter}}</td>
                                             </tr>
                                             </tbody>
                                             </thead></table>
