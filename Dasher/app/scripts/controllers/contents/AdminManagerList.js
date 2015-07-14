@@ -23,6 +23,7 @@ angular.module('btApp').controller('AdminManagerController', function($scope, $i
     $scope.password='';
     $scope.repassword='';
     $scope.email='';
+    $scope.password='';
     $scope.type=-1;
     $scope.Index=-1;
 
@@ -61,6 +62,7 @@ angular.module('btApp').controller('AdminManagerController', function($scope, $i
         $scope.lastName=curData.lastName;
 
         $scope.email=curData.email;
+        $scope.password=curData.password;
         $scope.type=curData.type;
 
         $scope.Index=index;
@@ -116,6 +118,7 @@ angular.module('btApp').controller('AdminManagerController', function($scope, $i
                 lastName:$scope.lastName,
                 email:$scope.email,
                 type:$scope.type,
+                password:$scope.password,
                 authCode:$scope.loginAuthCode
             };
             AdminManager.update($post,
@@ -126,7 +129,7 @@ angular.module('btApp').controller('AdminManagerController', function($scope, $i
                         $scope.TypeList[$scope.Index].lastName=$scope.lastName;
                         $scope.TypeList[$scope.Index].email=$scope.email;
                         $scope.TypeList[$scope.Index].type=$scope.type;
-
+                        $scope.TypeList[$scope.Index].type=$scope.password;
                     }else{
                         alert(data.resultDesc);
                         if(data.resultCode==3){
@@ -178,6 +181,7 @@ angular.module('btApp').controller('AdminManagerController', function($scope, $i
                 lastName:$scope.lastName,
                 email:$scope.email,
                 type:$scope.type,
+                password:$scope.password,
                 authCode:$scope.loginAuthCode
             };
             AdminManager.insert($post,

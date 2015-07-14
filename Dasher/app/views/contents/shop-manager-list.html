@@ -36,6 +36,7 @@
                         <th>好评数</th>
                         <th>差评数</th>
                         <th>地址</th>
+                        <th>当日营业时间</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -50,6 +51,7 @@
                         <td>{{data.goodEvaluate}}</td>
                         <td>{{data.badEvaluate}}</td>
                         <td>{{data.address}}</td>
+                        <td>&nbsp;</td>
                         <td>
                             <button type="button" class="btn btn-default btn-xs" ng-click="updateClick(data.sid)"><i class="fa fa-edit"></i>&nbsp;
                                 修改
@@ -57,7 +59,7 @@
                             <button type="button" class="btn btn-danger btn-xs" ng-click="deleteClick($index,data.sid)"><i class="fa fa-trash-o"></i>&nbsp;
                                 删除
                             </button>
-                            <button type="button" class="btn btn-success btn-xs" ng-click="toDishManagerClick(data.sid)"><i class="fa fa-cog"></i>&nbsp;
+                            <button type="button" class="btn btn-success2 btn-xs" ng-click="toDishManagerClick(data.sid)"><i class="fa fa-cog"></i>&nbsp;
                                 餐品管理
                             </button>
                             <button type="button" class="btn btn-success btn-xs" ng-click="toShopTimesClick(data.sid)"><i class="fa fa-cog"></i>&nbsp;

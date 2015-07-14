@@ -45,7 +45,14 @@
             <div class="panel-body pan">
                 <form ng-submit="submit()" ng-keypress="submit($event)" novalidate class="form-horizontal">
                     <div class="form-body pal">
-
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">姓名</label>
+                            <div class="col-md-9">
+                                <div class="input-icon right">
+                                    <input type="text" placeholder="" class="form-control" ng-model="firstName"/>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group" ng-hide="ISPasswordHide">
                             <label class="col-md-3 control-label">账号</label>
                             <div class="col-md-9">
@@ -54,7 +61,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group" ng-hide="ISPasswordHide">
+                        <div class="form-group">
                             <label class="col-md-3 control-label">密码</label>
                             <div class="col-md-9">
                                 <div class="input-icon right">
@@ -65,7 +72,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="form-group" ng-hide="ISPasswordHide">
+                        <div class="form-group">
                             <label class="col-md-3 control-label">重复密码</label>
                             <div class="col-md-9">
                                 <div class="input-icon right">
@@ -74,14 +81,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">姓名</label>
-                            <div class="col-md-9">
-                                <div class="input-icon right">
-                                    <input type="text" placeholder="" class="form-control" ng-model="firstName"/>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="form-group" ng-hide="true">
                             <label class="col-md-3 control-label">LastName</label>
                             <div class="col-md-9">

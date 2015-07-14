@@ -172,4 +172,59 @@ angular.module('btApp').controller('UserManagerInfoController', function($scope,
 
     $scope.GetListShop();
 
+
+    //
+    $scope.startDate="";
+    $scope.endDate="";
+
+    $scope.ToSearchList=function(){
+        $scope.totalCount=0;
+        $scope.totalPage=0;
+        $scope.curPage=1;
+        $scope.countPage=20;
+        $(".gw-page").val($scope.curPage);
+        $scope.GetDealComplainList();
+    };
+
+    $scope.GetDealComplainList=function(){
+        var $post={
+            status:2,
+            searchStr:$scope.searchStr,
+            startDate:$scope.startDate,
+            endDate:$scope.endDate,
+            curPage:$scope.curPage,
+            countPage:$scope.countPage,
+            authCode:$scope.loginAuthCode
+        };
+        UserManager.list($post,
+            function(data){
+                if(data.resultCode==0){
+                    //获取用户列表
+                    $scope.ListsOver=data.list;
+                    $scope.totalCount=data.count;
+                    $scope.totalPage=(data.count%$scope.countPage==0)?(data.count/$scope.countPage):Math.floor(data.count/$scope.countPage+1);
+                    if($scope.curPage==1){
+                        pager(0);
+                    }
+                }else{
+                    $scope.ListsOver=null;
+                    $scope.totalCount=0;
+                    $scope.totalPage=0;
+                    $scope.curPage=1;
+                    $scope.countPage=20;
+                    alert(data.resultDesc);
+                    if(data.resultCode==3){
+                        $state.go('signin');
+                    }
+                }
+                //$rootScope.loginAuthCode=data.authCode;
+            },function(res){
+                alert( ENToEnglish.netBusy.English);
+            }
+        );
+    };
+
+
+    //
+
 });
