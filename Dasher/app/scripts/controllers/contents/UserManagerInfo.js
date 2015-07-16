@@ -18,6 +18,9 @@ angular.module('btApp').controller('UserManagerInfoController', function($scope,
     $scope.userInfo=null;
     $scope.menuLists=null;
 
+    $scope.startDate="";
+    $scope.endDate="";
+
     //获取用户的详细信息
     $scope.GetInfo=function(){
         var $post={
@@ -51,7 +54,7 @@ angular.module('btApp').controller('UserManagerInfoController', function($scope,
     $scope.totalPage=0;
     $scope.curPage=1;
     $scope.countPage=20;
-    $scope.OrderSelect=function(){
+    $scope.SearchList=function(){
         $scope.menuLists=null;
         $scope.totalCount=0;
         $scope.totalPage=0;
@@ -70,6 +73,8 @@ angular.module('btApp').controller('UserManagerInfoController', function($scope,
         var $post={
             uid:$scope.UID,
             type:1,
+            startDate:$scope.startDate,
+            endDate:$scope.endDate,
             curPage:$scope.curPage,
             countPage:$scope.countPage,
             authCode:$scope.loginAuthCode
@@ -104,6 +109,8 @@ angular.module('btApp').controller('UserManagerInfoController', function($scope,
         var $post={
             uid:$scope.UID,
             type:1,
+            startDate:$scope.startDate,
+            endDate:$scope.endDate,
             curPage:$scope.curPage,
             countPage:$scope.countPage,
             authCode:$scope.loginAuthCode
@@ -174,57 +181,9 @@ angular.module('btApp').controller('UserManagerInfoController', function($scope,
 
 
     //
-    $scope.startDate="";
-    $scope.endDate="";
-
-    $scope.ToSearchList=function(){
-        $scope.totalCount=0;
-        $scope.totalPage=0;
-        $scope.curPage=1;
-        $scope.countPage=20;
-        $(".gw-page").val($scope.curPage);
-        $scope.GetDealComplainList();
-    };
-
-    $scope.GetDealComplainList=function(){
-        var $post={
-            status:2,
-            searchStr:$scope.searchStr,
-            startDate:$scope.startDate,
-            endDate:$scope.endDate,
-            curPage:$scope.curPage,
-            countPage:$scope.countPage,
-            authCode:$scope.loginAuthCode
-        };
-        UserManager.list($post,
-            function(data){
-                if(data.resultCode==0){
-                    //获取用户列表
-                    $scope.ListsOver=data.list;
-                    $scope.totalCount=data.count;
-                    $scope.totalPage=(data.count%$scope.countPage==0)?(data.count/$scope.countPage):Math.floor(data.count/$scope.countPage+1);
-                    if($scope.curPage==1){
-                        pager(0);
-                    }
-                }else{
-                    $scope.ListsOver=null;
-                    $scope.totalCount=0;
-                    $scope.totalPage=0;
-                    $scope.curPage=1;
-                    $scope.countPage=20;
-                    alert(data.resultDesc);
-                    if(data.resultCode==3){
-                        $state.go('signin');
-                    }
-                }
-                //$rootScope.loginAuthCode=data.authCode;
-            },function(res){
-                alert( ENToEnglish.netBusy.English);
-            }
-        );
-    };
-
-
+    $('.input-daterange').datepicker({
+        format: "yyyy-mm-dd"
+    });
     //
 
 });

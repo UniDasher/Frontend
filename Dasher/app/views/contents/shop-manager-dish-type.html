@@ -3,12 +3,24 @@
         <div class="panel panel-yellow">
             <div class="panel-heading">分类列表</div>
             <div class="panel-body">
+                <!-------------------------------------------------------->
+                <div class="row mbm">
+                    <div class="col-lg-3 pull-right">
+                        <div class="input-group">
+                            <input type="text" placeholder="query condition" class="form-control" ng-model="searchStr">
+                            <span class="input-group-btn">
+                                <a ng-click="ToSearchList()" class="btn btn-primary">查询</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-------------------------------------------------------->
                 <table class="table table-hover">
                     <thead>
                     <tr>
                         <th>分类编号</th>
                         <th>分类名</th>
-                        <th>排序</th>
+                        <th ng-show="false">排序</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -16,7 +28,7 @@
                     <tr ng-repeat="data in TypeList">
                         <td>{{data.id}}</td>
                         <td>{{data.name}}</td>
-                        <td>
+                        <td ng-show="false">
                             <button type="button" class="btn btn-success btn-xs"
                                     ng-hide="$index==0"
                                     ng-click="sortClick($index,data.id,TypeList[$index-1].sortNum,TypeList[$index-1].id,data.sortNum)">

@@ -58,7 +58,7 @@
                     <div class="col-md-4">
                         <div class="col-md-3 control-label">订单类型</div>
                         <div class="col-md-8 col-sm-8 col-xs-8">
-                            <select class="select2-size form-control input-medium" ng-model="orderType" ng-change="OrderSelect()">
+                            <select class="select2-size form-control input-medium" ng-model="orderType">
                                 <option value="0" ng-selected="true">餐厅订单</option>
                                 <option value="1">超市订单</option>
                             </select>
@@ -72,7 +72,11 @@
                             <input type="text" ng-model="endDate" class="form-control"/>
                         </div>
                     </div>
-
+                    <div class="col-md-3 pull-right">
+                        <div class="input-group pull-right">
+                            <button type="button" class="btn btn-primary" ng-click="SearchList()">查询</button>
+                        </div>
+                    </div>
                    <!----------------------------------------------------------------------->
 
                 </div>

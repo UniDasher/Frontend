@@ -7,5 +7,5 @@ angular
 			ModalDialog.showConfirmModal("你好", function(){
 				alert('zzzzzz');
 			});
-		};
+		}
 	});

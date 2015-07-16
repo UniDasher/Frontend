@@ -19,16 +19,15 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
     $scope.ListsNew=null;
     $scope.userNameSearchStr="";
 
-    $scope.ListsGiving=null;
-    $scope.startDateServer="";
-    $scope.endDateServer="";
-    $scope.searchStrServer="";
-
     $scope.ListsOver=null;
     $scope.startDateUser="";
     $scope.endDateUser="";
     $scope.searchStrUser="";
 
+    $scope.ListsGiving=null;
+    $scope.startDateServer="";
+    $scope.endDateServer="";
+    $scope.searchStrServer="";
 
     $scope.totalCount=0;
     $scope.totalPage=0;
@@ -161,6 +160,8 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
             searchStr:$scope.searchStr,
             curPage:$scope.curPage,
             countPage:$scope.countPage,
+            startDate:$scope.startDateServer,
+            endDate:$scope.endDateServer,
             authCode:$scope.loginAuthCode
         };
         SettleManager.serverList($post,

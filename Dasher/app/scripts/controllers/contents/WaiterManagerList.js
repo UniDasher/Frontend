@@ -23,6 +23,9 @@ angular.module('btApp').controller('WaiterManagerController', function($scope, $
     $scope.curPage=1;
     $scope.countPage=20;
 
+    $scope.startDate="";
+    $scope.endDate="";
+
     $scope.complainTabClick=function(status){
         $scope.status=status;
         if(status==1){
@@ -74,6 +77,8 @@ angular.module('btApp').controller('WaiterManagerController', function($scope, $
         var $post={
             type:1,
             searchStr:$scope.searchStr,
+            startDate:$scope.startDate,
+            endDate:$scope.endDate,
             curPage:$scope.curPage,
             countPage:$scope.countPage,
             authCode:$scope.loginAuthCode
@@ -200,4 +205,9 @@ angular.module('btApp').controller('WaiterManagerController', function($scope, $
         }
 
     };
+
+    $('.input-daterange').datepicker({
+        format: "yyyy-mm-dd"
+    });
+
 });
