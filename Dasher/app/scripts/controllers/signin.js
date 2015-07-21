@@ -12,8 +12,8 @@ angular
 		$scope.remember = true;
 		$scope.btnLoading = new Object();
 		$scope.post = {
-            account: 'admin',
-			password: '123456'
+            account: '',
+			password: ''
 		};
 
 		$scope.$watch('post', function() {

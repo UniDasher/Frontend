@@ -8,7 +8,7 @@ angular.module('btApp').controller('WaiterManagerController', function($scope, $
     var session = $injector.get('session');
     var Navigator = $injector.get('Navigator');
     Navigator.enableNavigator(true);
-    Navigator.setNavigatorTitle("送餐人管理");
+    Navigator.setNavigatorTitle("送单员管理");
 
     $scope.loginAuthCode=session.get('loginAuthCode');
     //远程访问传递参数

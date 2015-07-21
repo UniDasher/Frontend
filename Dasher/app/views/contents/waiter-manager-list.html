@@ -18,6 +18,7 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>用户名</th>
+                                                <th>真实姓名</th>
                                                 <th>手机</th>
                                                 <th>支付账户类型</th>
                                                 <th>支付账户</th>
@@ -27,6 +28,7 @@
                                             <tbody>
                                             <tr ng-repeat="data in applyLists">
                                                 <td>{{$index+1}}</td>
+                                                <td>{{data.nickName}}</td>
                                                 <td>{{data.firstName+data.lastName}}</td>
                                                 <td>{{data.mobilePhone}}</td>
                                                 <td>{{data.bankType}}</td>
@@ -92,7 +94,8 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>姓名</th>
+                                        <th>用户名</th>
+                                        <th>真实姓名</th>
                                         <th>手机</th>
                                         <th>好评</th>
                                         <th>差评</th>
@@ -103,6 +106,7 @@
                                     <tbody>
                                     <tr ng-repeat="data in userLists">
                                         <td>{{$index+1}}</td>
+                                        <td>{{data.nickName}}</td>
                                         <td>{{data.firstName+data.lastName}}</td>
                                         <td>{{data.mobilePhone}}</td>
                                         <td>{{data.goodEvaluate}}</td>

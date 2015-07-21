@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-12">
         <ul id="tableactiondTab" class="nav nav-tabs">
-            <li class="active"><a data-target="#table-new-menu-tab" data-toggle="tab" ng-click="SettleTabClick(1)">用户结算</a></li>
+            <li class="active"><a data-target="#table-new-menu-tab" data-toggle="tab" ng-click="SettleTabClick(1)">送单员结算</a></li>
             <li><a data-target="#table-over-menu-tab" data-toggle="tab" ng-click="SettleTabClick(2)">用户收支记录</a></li>
             <li><a data-target="#table-giving-menu-tab" data-toggle="tab" ng-click="SettleTabClick(3)">系统收支记录</a></li>
         </ul>
@@ -36,6 +36,7 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>用户名</th>
+                                                <th>真实姓名</th>
                                                 <th>手机号</th>
                                                 <th>本期余额</th>
                                                 <th>收款账号类型</th>
@@ -45,6 +46,7 @@
                                             <tbody>
                                             <tr ng-repeat="data in ListsNew">
                                                 <td>{{$index+1}}</td>
+                                                <td>{{data.nickName}}</td>
                                                 <td>{{data.firstName+data.lastName}}</td>
                                                 <td>{{data.mobilePhone}}</td>
                                                 <td>{{data.balance}}</td>
@@ -109,6 +111,7 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>用户名</th>
+                                                <th>真实姓名</th>
                                                 <th>电话</th>
                                                 <th>账户余额</th>
                                                 <th>收支金额</th>
@@ -123,6 +126,7 @@
                                             <tbody>
                                             <tr ng-repeat="data in ListsOver">
                                                 <td>{{$index+1}}</td>
+                                                <td>{{data.nickName}}</td>
                                                 <td>{{data.userName}}</td>
                                                 <td>{{data.mobilePhone}}</td>
                                                 <td>{{data.oldBalance}}</td>
@@ -188,10 +192,11 @@
                                             <thead>
                                             <tr>
                                                 <th>#</th>
+                                                <th>用户名</th>
+                                                <th>真实姓名</th>
                                                 <th>收支类型</th>
                                                 <th>收支说明</th>
                                                 <th>金额</th>
-                                                <th>用户名</th>
                                                 <th>用户手机</th>
                                                 <th>账号类别</th>
                                                 <th>账号</th>
@@ -201,10 +206,11 @@
                                             <tbody>
                                             <tr ng-repeat="data in ListsGiving">
                                                 <td>{{$index+1}}</td>
+                                                <td>{{data.nickName}}</td>
+                                                <td>{{data.userName}}</td>
                                                 <td>{{data.type==1?'收入':'支出'}}</td>
                                                 <td>{{data.typeDesc}}</td>
                                                 <td>{{data.settlePrice}}</td>
-                                                <td>{{data.userName}}</td>
                                                 <td>{{data.mobilePhone}}</td>
                                                 <td>{{data.settleNumberType}}</td>
                                                 <td>{{data.settleNumber}}</td>

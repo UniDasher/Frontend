@@ -10,7 +10,7 @@ angular.module('btApp').controller('UserManagerInfoController', function($scope,
     var session = $injector.get('session');
     var Navigator = $injector.get('Navigator');
     Navigator.enableNavigator(true);
-    Navigator.setNavigatorTitle("订单人的详细信息");
+    Navigator.setNavigatorTitle("用户详细信息");
 
     $scope.loginAuthCode=session.get('loginAuthCode');
     $scope.UID=$stateParams.UID;

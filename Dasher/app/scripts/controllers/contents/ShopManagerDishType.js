@@ -18,10 +18,15 @@ angular.module('btApp').controller('ShopManagerDishTypeController', function($sc
     $scope.TypeId='';
     $scope.Index=-1;
 
+
+    $scope.ToSearchList=function(){
+        $scope.GetList();
+    }
     //获取商家餐品分类的列表
     $scope.GetList=function(){
         var $post={
             type:1,
+            searchStr:$scope.searchStr,
             authCode:$scope.loginAuthCode
         };
         ShopManager.typeList($post,
@@ -175,4 +180,8 @@ angular.module('btApp').controller('ShopManagerDishTypeController', function($sc
             );
         }
     };
+
+
+
+
 });
