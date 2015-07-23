@@ -36,6 +36,7 @@
                         <th>好评数</th>
                         <th>差评数</th>
                         <th>地址</th>
+                        <th>营业状态</th>
                         <th>当日营业时间</th>
                         <th>操作</th>
                     </tr>
@@ -51,7 +52,8 @@
                         <td>{{data.goodEvaluate}}</td>
                         <td>{{data.badEvaluate}}</td>
                         <td>{{data.address}}</td>
-                        <td>&nbsp;</td>
+                        <td>{{data.openService==1?'营业':'不营业'}}</td>
+                        <td>{{data.serviceTimes==""?(data.openService==1?'全天':''):data.serviceTimes}}</td>
                         <td>
                             <button type="button" class="btn btn-default btn-xs" ng-click="updateClick(data.sid)"><i class="fa fa-edit"></i>&nbsp;
                                 修改

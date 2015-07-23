@@ -5,13 +5,18 @@
                 <div class="profile" style="display: block;">
                     <div class="user-info">
                         <div style="margin-bottom: 15px" class="row">
-                            <div class="col-xs-12 col-sm-8"><h2>{{userInfo.firstName+' '+userInfo.lastName}}</h2>
-                                <p><strong>手机:</strong> {{userInfo.mobilePhone}}</p>
-                                <p><strong>余额:</strong> {{userInfo.balance}}</p>
+                            <div class="col-xs-12 col-sm-8"><h2>{{userInfo.firstName+''+userInfo.lastName}}</h2>
+                                <p><strong>手机号&nbsp;:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{userInfo.mobilePhone}}</p>
+                                <p><strong>余额&nbsp;:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{userInfo.balance}}</p>
+                                <!--
                                 <p><strong>邮件:</strong> {{userInfo.email}}</p>
                                 <p><strong>评价:</strong> {{'好评:'+userInfo.goodEvaluate+'  差评:'+userInfo.badEvaluate}}</p>
                                 <p><strong>地址:</strong> {{userInfo.address}}</p>
                                 <p><strong>创建时间:</strong> {{userInfo.createDate}}</p>
+                                -->
+                                <p><strong>支付账号&nbsp;:</strong> {{userInfo.bankAccount}}</p>
+                                <p><strong>账号类别&nbsp;:</strong> {{userInfo.bankType}}</p>
+                                <p><strong>认证时间&nbsp;:</strong> {{userInfo.authTime}}</p>
                             </div>
 
                             <div class="col-xs-12 col-sm-4 text-center">
@@ -26,6 +31,7 @@
                                             class="fa fa-star"></span></a><a href="#"><span
                                             class="fa fa-star-o"></span></a></p></figcaption>-->
                                 </figure>
+                                <p style="font-size: 23px">{{userInfo.nickName}}</p>
                             </div>
                         </div>
                     </div>

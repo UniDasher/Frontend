@@ -3,6 +3,7 @@
  */
 angular.module('btApp').controller('UserManagerInfoController', function($scope, $injector,$timeout,config) {
     var $stateParams = $injector.get('$stateParams');
+    var $state = $injector.get('$state');
     var ENToEnglish = $injector.get('ENToEnglish');
     var MarketMenuManager = $injector.get('MarketMenuManager');
     var MenuManager = $injector.get('MenuManager');
@@ -185,5 +186,9 @@ angular.module('btApp').controller('UserManagerInfoController', function($scope,
         format: "yyyy-mm-dd"
     });
     //
+
+    $scope.ToMenuInfo=function(MID){
+        $state.go('main.frame.MenuManagerInfo',{'MID':MID});
+    };
 
 });

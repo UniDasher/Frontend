@@ -9,7 +9,7 @@ angular.module('btApp').controller('MarketManagerInsertController', function($sc
     //var Upload= $injector.get('Upload');
     var Navigator = $injector.get('Navigator');
     Navigator.enableNavigator(true);
-    Navigator.setNavigatorTitle("商家新增");
+    Navigator.setNavigatorTitle("超市新增");
 
     $scope.loginAuthCode=session.get('loginAuthCode');
     $scope.name="";
