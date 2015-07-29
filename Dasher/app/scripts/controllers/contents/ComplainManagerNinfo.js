@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2015/4/8.
  */
-angular.module('btApp').controller('ComplainManagerNinfoController', function($scope, $injector,$timeout) {
+angular.module('btApp').controller('ComplainManagerNinfoController', function($scope, $injector,$timeout,config) {
     var $state = $injector.get('$state');
     var $stateParams = $injector.get('$stateParams');
     var ComplainManager = $injector.get('ComplainManager');
@@ -70,13 +70,15 @@ angular.module('btApp').controller('ComplainManagerNinfoController', function($s
             comContent:$scope.comContent,
             returnMoney:$scope.returnMoney,
             deductMoney:$scope.deductMoney,
-            authCode:$scope.loginAuthCode
+            authCode:$scope.loginAuthCode,
+            flag:2
         };
         ComplainManager.deal($post,
             function(data){
                 if(data.resultCode==0){
                     //数据归于初始
                     alert(data.resultDesc);
+                    location.href=config.api_uri+data.fileName;
                     $state.go('main.frame.ComplainManager');
                 }else{
                     alert(data.resultDesc);

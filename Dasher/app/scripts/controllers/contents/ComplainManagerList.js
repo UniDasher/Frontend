@@ -173,12 +173,13 @@ angular.module('btApp').controller('ComplainManagerController', function($scope,
             comContent:'退款驳回',
             returnMoney:0,
             deductMoney:0,
-            authCode:$scope.loginAuthCode
+            authCode:$scope.loginAuthCode,
+            flag:3
         };
         ComplainManager.deal($post,
             function(data){
                 if(data.resultCode==0){
-                    alert(data.resultDesc);
+                    alert("退款驳回成功！");
                     $scope.ListsNew.splice(index,1);
                     location.href=config.api_uri +data.fileName;
                 }else{
@@ -204,8 +205,10 @@ angular.module('btApp').controller('ComplainManagerController', function($scope,
             comContent:'退款通过',
             returnMoney:dishsMoney+carriageMoney,
             deductMoney:0,
+            flag:1,
             authCode:$scope.loginAuthCode
         };
+
         ComplainManager.deal($post,
             function(data){
                 if(data.resultCode==0){

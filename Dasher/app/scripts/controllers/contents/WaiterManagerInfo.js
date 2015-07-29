@@ -3,6 +3,7 @@
  */
 angular.module('btApp').controller('WaiterManagerInfoController', function($scope, $injector,$timeout,config) {
     var $stateParams = $injector.get('$stateParams');
+    var $state = $injector.get('$state');
     var ENToEnglish = $injector.get('ENToEnglish');
     var MarketMenuManager = $injector.get('MarketMenuManager');
     var MenuManager = $injector.get('MenuManager');
@@ -10,7 +11,7 @@ angular.module('btApp').controller('WaiterManagerInfoController', function($scop
     var session = $injector.get('session');
     var Navigator = $injector.get('Navigator');
     Navigator.enableNavigator(true);
-    Navigator.setNavigatorTitle("送餐人的详细信息");
+    Navigator.setNavigatorTitle("送单员详细信息");
 
     $scope.loginAuthCode=session.get('loginAuthCode');
     $scope.UID=$stateParams.UID;
@@ -18,6 +19,9 @@ angular.module('btApp').controller('WaiterManagerInfoController', function($scop
     $scope.userInfo=null;
     $scope.menuLists=null;
 
+    $scope.statusArr=['订单未付款','预订单','配送中','完成订单','取消订单','配送投诉','订单延时','取消处理','投诉处理','延时处理'];
+
+    var $state = $injector.get('$state');
     //获取用户的详细信息
     $scope.GetInfo=function(){
         var $post={
@@ -220,4 +224,12 @@ angular.module('btApp').controller('WaiterManagerInfoController', function($scop
     $scope.userInfo=userInfo;
     $scope.menuLists=data.Lists;
     /*--测试数据结束--*/
+
+
+    $scope.ToUserInfoClick=function(MID){
+      /*  $state.go('main.frame.UserManagerInfo',{'UID':UID});*/
+      /*  alert(MID);*/
+        $state.go('main.frame.MenuManagerInfo',{'MID':MID});
+    };
+
 });

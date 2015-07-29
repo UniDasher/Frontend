@@ -157,7 +157,7 @@ angular.module('btApp').controller('SettleManagerController', function($scope,$i
     //获取系统收支列表
     $scope.GetServerSettleList=function(){
         var $post={
-            searchStr:$scope.searchStr,
+            searchStr:$scope.searchStrServer,
             curPage:$scope.curPage,
             countPage:$scope.countPage,
             startDate:$scope.startDateServer,

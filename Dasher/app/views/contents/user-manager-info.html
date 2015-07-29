@@ -94,7 +94,7 @@
                         <th>#</th>
                         <th>订单编号</th>
                         <th>下单人</th>
-                        <th>送餐人</th>
+                        <th>送单员</th>
                         <th>商家名</th>
                         <th>商品总价</th>
                         <th>运费</th>
@@ -118,7 +118,7 @@
                         <td ng-hide="true">{{data.serviceMoney  | currency}}</td>
                         <td ng-hide="true">{{data.tipMoney  | currency}}</td>
                         <td>{{(data.payType==1)?'线上支付':((data.payType==2)?'线下支付':'未支付')}}</td>
-                        <td>{{data.status}}</td>
+                        <td>{{statusArr[data.status]}}</td>
                         <td>
                             <button type="button" class="btn btn-default btn-xs" ng-click="ToMenuInfo(data.mid)"><i
                                     class="fa fa-edit"></i>&nbsp;

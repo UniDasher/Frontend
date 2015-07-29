@@ -22,6 +22,8 @@ angular.module('btApp').controller('UserManagerInfoController', function($scope,
     $scope.startDate="";
     $scope.endDate="";
 
+    $scope.statusArr=['订单未付款','预订单','配送中','完成订单','取消订单','配送投诉','订单延时','取消处理','投诉处理','延时处理'];
+
     //获取用户的详细信息
     $scope.GetInfo=function(){
         var $post={

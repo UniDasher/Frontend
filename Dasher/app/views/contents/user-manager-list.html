@@ -11,7 +11,7 @@
 
                     <div class="col-lg-3 pull-right">
                         <div class="input-group">
-                            <input type="text" placeholder="query condition" class="form-control" ng-model="searchStr">
+                            <input type="text" placeholder="用户名" class="form-control" ng-model="searchStr">
                             <span class="input-group-btn">
                                 <a ng-click="ToSearchList()" class="btn btn-primary">查询</a>
                             </span>
@@ -34,7 +34,7 @@
                     <tbody>
                     <tr ng-repeat="data in userLists">
                         <td>{{$index+1}}</td>
-                        <td>{{data.firstName}}</td>
+                        <td>{{data.nickName}}</td>
                         <td ng-hide="true">{{data.lastName}}</td>
                         <td>{{data.email}}</td>
                         <td>{{data.mobilePhone}}</td>
