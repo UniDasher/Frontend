@@ -22,6 +22,8 @@ angular.module('btApp').controller('ComplainManagerNinfoController', function($s
     $scope.deductMoney=0;
     $scope.comContent="";
 
+    $scope.totalMoney="";
+
     //获取投诉的信息
     $scope.GetInfo=function(){
         var $post={
@@ -33,6 +35,7 @@ angular.module('btApp').controller('ComplainManagerNinfoController', function($s
             function(data){
                 if(data.resultCode==0){
                     $scope.comInfo=data.data;
+                    $scope.returnMoney=data.data.dishsMoney+data.data.carriageMoney;
                 }else{
                     $scope.comInfo=null;
                     alert(data.resultDesc);

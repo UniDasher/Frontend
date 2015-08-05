@@ -101,7 +101,7 @@
                         <th ng-hide="true">TaxesMoney</th>
                         <th ng-hide="true">ServiceMoney</th>
                         <th ng-hide="true">TipMoney</th>
-                        <th>支付类型</th>
+                        <!--<th>支付类型</th>-->
                         <th>订单状态</th>
                         <th>操作</th>
                     </tr>
@@ -117,7 +117,7 @@
                         <td ng-hide="true">{{data.taxesMoney  | currency}}</td>
                         <td ng-hide="true">{{data.serviceMoney  | currency}}</td>
                         <td ng-hide="true">{{data.tipMoney  | currency}}</td>
-                        <td>{{(data.payType==1)?'线上支付':((data.payType==2)?'线下支付':'未支付')}}</td>
+                       <!-- <td>{{(data.payType==1)?'线上支付':((data.payType==2)?'线下支付':'未支付')}}</td>-->
                         <td>{{statusArr[data.status]}}</td>
                         <td>
                             <button type="button" class="btn btn-default btn-xs" ng-click="ToMenuInfo(data.mid)"><i

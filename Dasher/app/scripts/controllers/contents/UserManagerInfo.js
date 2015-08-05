@@ -75,7 +75,7 @@ angular.module('btApp').controller('UserManagerInfoController', function($scope,
     $scope.GetListMarket=function(){
         var $post={
             uid:$scope.UID,
-            type:1,
+            type:0,
             startDate:$scope.startDate,
             endDate:$scope.endDate,
             curPage:$scope.curPage,
@@ -111,7 +111,7 @@ angular.module('btApp').controller('UserManagerInfoController', function($scope,
     $scope.GetListShop=function(){
         var $post={
             uid:$scope.UID,
-            type:1,
+            type:0,
             startDate:$scope.startDate,
             endDate:$scope.endDate,
             curPage:$scope.curPage,

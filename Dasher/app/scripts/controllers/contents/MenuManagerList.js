@@ -37,15 +37,15 @@ angular.module('btApp').controller('MenuManagerController', function($scope, $in
             $scope.searchStr='';
             $scope.startDate='';
             $scope.endDate='';
-            $scope.curPage=0;
-            $scope.countPage=0;
+            $scope.curPage=1;
+            $scope.countPage=20;
             $scope.shopSelect={'sid':'','name':'全部'};
         }else if(status==2){
             $scope.searchStr='';
             $scope.startDate='';
             $scope.endDate='';
-            $scope.curPage=0;
-            $scope.countPage=0;
+            $scope.curPage=1;
+            $scope.countPage=20;
             $scope.shopSelect={'sid':'','name':'全部'};
         }else{
             $scope.curPage=1;
