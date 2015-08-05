@@ -1,0 +1,164 @@
+<div class="signup-header" style="{{bgcolor ? 'background-color: ' + bgcolor : ''}}">
+  <img class="logo" ng-src="{{logo || 'img/ai-logo.png'}}" alt="logo">
+</div>
+
+<div class="login-wrapper">
+  <div class="box" ng-show="!signedUp">
+    <div class="content-wrap">
+        <h5>Sign Up</h5>
+        <h6>Please enter your info...</h6>
+
+        <div ng-form class="form" name="signupForm">
+          <input
+            name="firstName"
+            class="form-control"
+            type="text"
+            placeholder="First Name"
+            tooltip="Please insert your first name"
+            tooltip-trigger="open"
+            tooltip-placement="top"
+            ng-model="user.firstName"
+            ng-trim="true"
+            required="First name field is mandatory"
+          >
+          <input
+            name="lastName"
+            class="form-control"
+            type="text"
+            placeholder="Last Name"
+            tooltip="Please insert your last name"
+            tooltip-trigger="open"
+            tooltip-placement="top"
+            ng-model="user.lastName"
+            ng-trim="true"
+            required
+          >
+          <input
+            name="email"
+            class="form-control"
+            type="email"
+            placeholder="E-mail address"
+            tooltip="Please insert a valid email"
+            tooltip-trigger="open"
+            tooltip-placement="top"
+            ng-model="user.email"
+            ng-trim="true"
+            required
+          >
+          <input
+            name="password"
+            class="form-control"
+            type="password"
+            placeholder="Password"
+            tooltip="Please insert a password of minimum 6 characters"
+            tooltip-trigger="open"
+            tooltip-placement="top"
+            ng-model="user.password"
+            ng-trim="true"
+            required
+          >
+          <input
+            name="password_check"
+            class="form-control"
+            type="password"
+            placeholder="Confirm Password"
+            tooltip="Passwords aren't matching"
+            tooltip-trigger="open"
+            tooltip-placement="top"
+            ng-model="user.password_check"
+            required
+          >
+        </div>
+
+        <div class="alert alert-danger" ng-show="alreadySignedUp">
+          This email is already in the system, please <a ui-sref="signin">signin</a>
+        </div>
+
+        <div class="alert alert-danger" ng-show="apiError">
+          An error occurred: {{apiError}}
+        </div>
+
+        <div class="social">
+          <h6>or connect with you socials...</h6>
+
+          <a
+            class="btn btn-primary btn-facebook"
+            ng-click="fbSignin()"
+            ng-disabled="user.facebook.accessToken"
+          >
+            <i
+              class="fa fa-1x"
+              ng-class="{
+                'fa-facebook':!user.facebook.accessToken,
+                'fa-check-circle':user.facebook.accessToken
+              }"
+            ></i>
+            <span>Facebook</span>
+            <i class="fa fa-refresh fa-spin" ng-if="isFetchingFacebook"></i>
+          </a>
+
+          <a
+            class="btn btn-info btn-twitter"
+            ng-click="twitterSignin()"
+            ng-disabled="user.twitter.accessToken"
+          >
+            <i
+              class="fa fa-1x"
+              ng-class="{
+                'fa-twitter':!user.twitter.accessToken,
+                'fa-check-circle':user.twitter.accessToken
+              }"
+            ></i>
+            <span>Twitter</span>
+            <i class="fa fa-refresh fa-spin" ng-show="isFetchingTwitter"></i>
+          </a>
+
+          <a
+            class="btn btn-primary btn-linkedin"
+            tooltip="Coming soon!"
+            tooltip-trigger="mouseenter"
+            tooltip-placement="top"
+            ng-disabled="user.linkedin.accessToken"
+          >
+            <i
+              class="fa fa-1x"
+              ng-class="{
+                'fa-linkedin':!user.linkedin.accessToken,
+                'fa-check-circle':user.linkedin.accessToken
+              }"
+            ></i>
+            <span>Linkedin</span>
+          </a>
+        </div>
+
+        <div class="action">
+          <div class="btn btn-success signup" ng-click="signup()">
+            <i class="fa fa-refresh fa-spin" ng-show="isSigninUp"></i>
+            {{isSigninUp ? 'Signing up' : 'Sign up' }}
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="box" ng-show="signedUp">
+    <div class="content-wrap">
+        <h5>Successfully signed up!</h5>
+        <h6>Please activate your account.</h6>
+        <p>
+          We sent an email to <strong>{{user.email || 'email@email.com'}}</strong><br>
+          with an activation link, please follow the instructions<br>
+          and activate your account.<br>
+          <br>
+          Right after the activation you will be able to signin into our<br>
+          app and start taking assessments.<br>
+          <br>
+          Thanks.
+        </p>
+    </div>
+  </div>
+
+  <div class="already" ng-show="!signedUp">
+    <p>Already have an account?</p>
+    <a href="/#/signin">Sign in</a>
+  </div>
+</div>

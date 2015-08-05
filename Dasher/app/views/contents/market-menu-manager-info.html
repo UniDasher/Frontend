@@ -1,0 +1,88 @@
+<div class="row" id="menumanagerinfo">
+    <div class="col-lg-5">
+        <div class="panel">
+            <div class="panel-heading">订单基本信息</div>
+            <div class="panel-body pan">
+                <form ng-submit="submit()" ng-keypress="submit($event)" novalidate class="form-horizontal form-seperated">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="col-md-3 control-label"><span class="help-block">订单编号:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{menuInfo.mid}}</span></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3 control-label"><span class="help-block">订餐人:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{menuInfo.userName}}</span></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3 control-label"><span class="help-block">超市名:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{menuInfo.marketName}}</span></div>
+                        </div>
+                        <div class="form-group" ng-hide="menuInfo.status==1">
+                            <div class="col-md-3 control-label"><span class="help-block">送餐人:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{menuInfo.serverName}}</span></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3 control-label"><span class="help-block">订单状态:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{menuInfo.status==1?'新订单':(menuInfo.status==2?'配送中':'已完成')}}</span></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3 control-label"><span class="help-block">订单金额:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{menuInfo.dishsMoney| currency}}</span></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3 control-label"><span class="help-block">运费:</span></div>
+                            <div class="col-md-4"><span class="help-block">{{menuInfo.carriageMoney| currency}}</span></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3 control-label"><span class="help-block">菜品总数:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{menuInfo.menuCount}}</span></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3 control-label"><span class="help-block">送餐地址:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{menuInfo.address}}</span></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3 control-label"><span class="help-block">创建时间:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{menuInfo.createDate}}</span></div>
+                        </div>
+                        <div class="form-group" ng-hide="menuInfo.status==1">
+                            <div class="col-md-3 control-label"><span class="help-block">接单时间:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{menuInfo.startDate}}</span></div>
+                        </div>
+                        <div class="form-group" ng-show="menuInfo.status==3">
+                            <div class="col-md-3 control-label"><span class="help-block">完成时间:</span></div>
+                            <div class="col-md-8"><span class="help-block">{{menuInfo.endDate}}</span></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-7">
+        <div class="panel">
+            <div class="panel-heading">订单商品信息</div>
+            <div class="panel-body">
+                <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>商品名</th>
+                        <th>价格</th>
+                        <th>单位</th>
+                        <th>数量</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="data in menuDishs">
+                        <td>{{$index+1}}</td>
+                        <td>{{data.name}}</td>
+                        <td>{{data.price | currency}}</td>
+                        <td>{{data.unit}}</td>
+                        <td>{{data.count}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

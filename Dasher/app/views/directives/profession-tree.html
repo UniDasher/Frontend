@@ -1,0 +1,12 @@
+<div class="family-tree-vertical">
+    <ul>
+        <li><a href="#">{{ treedata.name }}</a>
+            <ul>
+                <li ng-repeat="category in treedata.categories" ng-click="getcurrentNode($event,category)">
+                    <a href="">{{ category.name }}</a>
+                    <parent-tree parentdata="category"></parent-tree>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

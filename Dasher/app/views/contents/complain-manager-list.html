@@ -1,0 +1,151 @@
+<div  class="row">
+    <div class="col-lg-12">
+        <ul id="tableactiondTab" class="nav nav-tabs">
+            <li class="active"><a data-target="#table-new-winter-tab" data-toggle="tab" ng-click="complainTabClick(1)">未处理</a></li>
+            <li><a data-target="#table-over-winter-tab" data-toggle="tab" ng-click="complainTabClick(2)">已处理</a></li>
+        </ul>
+        <div id="tableactionTabContent" class="tab-content">
+            <div id="table-new-winter-tab" class="tab-pane fade in active">
+                <div class="row">
+                    <div class="portlet box">
+                        <div class="portlet-body">
+                            <div class="row mbm">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <table id="table_id_new"
+                                               class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <!--<th>编号</th>-->
+                                                <th>用户名</th>
+                                                <th>手机</th>
+                                                <th>订单号</th>
+                                                <!--<th>订单总额</th>-->
+                                                <th>退款类型</th>
+                                                <th>订单类型</th>
+                                                <th>描述</th>
+                                                <th>日期</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            <tbody>
+                                            <tr ng-repeat="data in ListsNew">
+                                                <td>{{$index+1}}</td>
+                                                <!--<td>{{data.comId}}</td>-->
+                                                <td>{{data.userName}}</td>
+                                                <td>{{data.userPhone}}</td>
+                                                <td>{{data.mid}}</td>
+                                                <!--<td>{{data.dishsMoney+data.carriageMoney}}</td>-->
+                                                <td>{{data.comType==1?'订单投诉':(data.comType==2?'订单取消':'订单延时取消')}}</td>
+                                                <td>{{data.type==1?'商家订单':'超市订单'}}</td>
+                                                <td>{{data.content}}</td>
+                                                <td>{{data.createDate|brDateFilter}}</td>
+                                                <td>
+                                                    <button ng-hide="data.comType==1" type="button" class="btn btn-success btn-xs" ng-click="refundClick($index,data.comId,data.type,data.dishsMoney,data.carriageMoney)">
+                                                        <i class="fa fa-edit"></i>&nbsp;
+                                                        确定
+                                                    </button>
+                                                    <button ng-show="data.comType==1" type="button" class="btn btn-success btn-xs" ng-click="applyInfoClick(data.comId,data.type)"><i class="fa fa-edit"></i>&nbsp;
+                                                        详情
+                                                    </button>&nbsp;
+                                                    <button ng-show="data.comType==1" type="button" class="btn btn-danger btn-xs" ng-click="applyRefuseClick($index,data.comId,data.type)"><i class="fa fa-trash-o"></i>&nbsp;
+                                                        驳回
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                            </thead></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="table-over-winter-tab" class="tab-pane fade">
+                <div class="row">
+                    <div class="portlet box">
+                        <div class="portlet-body">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <div class="col-md-2 control-label">日期</div>
+                                    <div class="col-md-10 input-group input-daterange">
+                                        <input type="text" ng-model="startDate" class="form-control"/>
+                                        <span class="input-group-addon">to</span>
+                                        <input type="text" ng-model="endDate" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 pull-right">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="下单人" class="form-control" ng-model="searchStr">
+                                        <span class="input-group-btn">
+                                            <a ng-click="ToSearchList()" class="btn btn-primary">查询</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row mbm">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <table id="table_id_over"
+                                               class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>下单人</th>
+                                                <th>手机</th>
+                                                <th>订单号</th>
+                                                <th>订单类型</th>
+                                                <!--<th>订单金额</th>-->
+                                                <th>退款类型</th>
+                                                <th>处理结果</th>
+                                                <th>退款金额</th>
+                                                <th>退款时间</th>
+                                                <!--<th>操作</th>-->
+                                            </tr>
+                                            <tbody>
+                                                <tr ng-repeat="data in ListsOver">
+                                                    <td>{{$index+1}}</td>
+                                                    <td>{{data.userName}}</td>
+                                                    <td>{{data.userPhone}}</td>
+                                                    <td>{{data.mid}}</td>
+                                                    <td>{{data.type==1?'餐厅订单':'超市订单'}}</td>
+                                                    <!--<td>{{data.dishsMoney+data.carriageMoney}}</td>-->
+                                                    <td>{{data.comType==1?'订单投诉退款':(data.comType==2?'订单取消退款':'订单超时退款')}}</td>
+                                                    <td>{{data.comResult==1?'通过':'驳回'}}</td>
+                                                    <td>{{data.returnMoney}}</td>
+                                                    <td>{{data.updateDate|brDateFilter}}</td>
+                                                    <!--<td>
+                                                        <button type="button" class="btn btn-default btn-xs" ng-click="ToComDealInfoClick(data.comId)"><i
+                                                                class="fa fa-edit"></i>&nbsp;
+                                                            详情
+                                                        </button>
+                                                    </td>-->
+                                                </tr>
+                                            </tbody>
+                                            </thead></table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mbm">
+                                <div class="col-lg-12">
+                                    <div class="pagination-panel">
+                                        当前页
+                                        &nbsp;<a href="javascript:void(0);" class="btn btn-sm btn-default btn-prev gw-prev"><i class="fa fa-angle-left"></i></a>&nbsp;
+                                        <input type="text" maxlenght="5" value="1" class="pagination-panel-input form-control input-mini input-inline input-sm text-center gw-page"/>&nbsp;
+                                        <a href="javascript:void(0);" class="btn btn-sm btn-default btn-prev gw-next"><i class="fa fa-angle-right"></i></a>&nbsp;
+                                        总页数 {{totalPage}} | 每页
+                                        &nbsp;{{countPage}}&nbsp;
+                                        条数据 | 总数据 {{totalCount}} 条
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

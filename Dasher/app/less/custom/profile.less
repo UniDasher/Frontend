@@ -1,0 +1,88 @@
+#page-user-profile{
+	.tab-content{
+		border: 0;
+	}
+	#tab-activity{
+		ul.list-activity{
+			> li{
+				padding-bottom: 15px;
+				margin-bottom: 15px;
+				border-bottom: 1px solid #efefef;
+				&:last-child{
+					border-bottom: 0;
+				}
+				.avatar{
+					float: left;
+					margin-right: 10px;
+					img{
+						width: 40px;
+						display: inline-block;
+					}
+				}
+				.body{
+					overflow: hidden;
+					zoom: 1;
+					.desc{
+						small.text-muted{
+							font-size: 10px;
+							color: #BBBBBB;
+						}
+					}
+					.content{
+						margin-top: 20px;
+						a{
+							color: #428bca;
+							&:hover{
+								text-decoration: underline;
+							}
+						}
+						.content-thumb{
+							float: left;
+							margin-right: 10px;
+							img{
+								width: 100px;
+								display: inline-block;
+							}
+						}
+						.content-thumb-large{
+							float: left;
+							img{
+								width: 180px;
+								display: inline-block;
+								margin-right: 10px;
+							}
+						}
+						.content-info{
+							overflow: hidden;
+							zoom: 1;
+						}
+					}
+				}
+			}
+		}
+	}
+	#tab-edit{
+		.tab-content{
+			background: #f8f8f8;
+		}
+		.nav-pills{
+			li{
+				&.active{
+					a{
+						background-color: @brand-success;
+						border-color: @brand-success;
+						&:hover{
+							color: #FFFFFF !important;
+						}
+					}
+				}
+				a{
+					background-color: #f8f8f8;
+					&:hover{
+						color: @text-color;
+					}
+				}
+			}
+		}
+	}
+}

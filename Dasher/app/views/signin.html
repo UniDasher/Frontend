@@ -1,0 +1,46 @@
+<!--hjb-->
+<div id="signin-page">
+	<div class="page-form">
+		<form name="signinForm" ng-submit="submit()" ng-keypress="submit($event)" novalidate>
+			<div class="header-content">
+				<h1>趣送管理平台</h1>
+			</div>
+			<div class="body-content">
+				<div class="form-group" ng-class="{'state-error': !signinForm.username.$valid && signinForm.validate}">
+					<div class="input-icon right">
+						<i class="fa fa-user"></i>
+						<input name="username" type="text" class="form-control" placeholder="ACCOUNT"
+                               ng-model="post.account" required/>
+					</div>
+					<em ng-messages="signinForm.username.$error" ng-if="signinForm.validate">
+						<div ng-message="required">账号不可为空。</div>
+					</em>
+				</div>
+				<div class="form-group" ng-class="{'state-error': !signinForm.password.$valid && signinForm.validate}">
+					<div class="input-icon right">
+						<i class="fa fa-key"></i>
+						<input name="password" type="password" class="form-control" ng-model="post.password"
+                               placeholder="PASSWORD" ng-minlength="6" required/>
+					</div>
+					<em ng-messages="signinForm.password.$error" ng-if="signinForm.validate">
+						<div ng-message="required">密码不可为空。</div>
+						<div ng-message="minlength">密码长度不可以小于6位。</div>
+					</em>
+				</div>
+
+				<div class="form-group pull-left" ng-hide="true">
+					<div class="checkbox">
+						<label><input uni-icheck type="checkbox" ng-model="remember" />&nbsp;下次自动登录</label>
+					</div>
+				</div>
+				<div class="form-group pull-right">
+					<button ng-disabled="signinForm.submitted" uni-button-loading type="submit" on-bind="btnLoading" class="btn btn-success btn-bg">登录</button>
+				</div>
+				<div class="clearfix"></div>
+				<div class="alert alert-danger" ng-if="apiError" style="margin-top: 5px; margin-bottom: 10px;">
+					{{ apiError }}
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

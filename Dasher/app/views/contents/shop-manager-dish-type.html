@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-lg-8">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">分类列表</div>
+            <div class="panel-body">
+                <!-------------------------------------------------------->
+                <div class="row mbm">
+                    <div class="col-lg-3 pull-right">
+                        <div class="input-group">
+                            <input type="text" placeholder="分类名" class="form-control" ng-model="searchStr">
+                            <span class="input-group-btn">
+                                <a ng-click="ToSearchList()" class="btn btn-primary">查询</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-------------------------------------------------------->
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>分类编号</th>
+                        <th>分类名</th>
+                        <th ng-show="false">排序</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="data in TypeList">
+                        <td>{{data.id}}</td>
+                        <td>{{data.name}}</td>
+                        <td ng-show="false">
+                            <button type="button" class="btn btn-success btn-xs"
+                                    ng-hide="$index==0"
+                                    ng-click="sortClick($index,data.id,TypeList[$index-1].sortNum,TypeList[$index-1].id,data.sortNum)">
+                                <i class="fa fa-arrow-up"></i>&nbsp;
+                                上升
+                            </button>&nbsp;
+                            <button type="button" class="btn btn-info btn-xs" ng-hide="($index+1)==TypeList.length"
+                                    ng-click="sortClick($index+1,TypeList[$index+1].id,data.sortNum,data.id,TypeList[$index+1].sortNum)">
+                                <i class="fa fa-arrow-down"></i>&nbsp;
+                                下降
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-xs" ng-click="updateClick($index,data.id,data.name)"><i class="fa fa-edit"></i>&nbsp;
+                                修改
+                            </button>&nbsp;
+                            <button type="button" class="btn btn-danger btn-xs" ng-click="deleteClick($index,data.id)"><i class="fa fa-trash-o"></i>&nbsp;
+                                删除
+                            </button>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">{{formTitle}}</div>
+            <div class="panel-body pan">
+                <form ng-submit="submit()" ng-keypress="submit($event)" novalidate class="form-horizontal">
+                    <div class="form-body pal">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">分类名</label>
+                            <div class="col-md-9">
+                                <div class="input-icon right">
+                                    <input type="text" placeholder="" class="form-control" ng-model="typeName"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions pal">
+                        <div class="form-group mbn">
+                            <div class="col-md-offset-3 col-md-6">
+                                <button type="submit" class="btn btn-primary">{{formSubmitBtn}}</button>
+                                <button type="button" class="btn btn-default" ng-click="formCancleFun()">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+@import "../global/_variables";
+@import "../global/_mixins";
+@import "../global/_spaces";
+
+
+#lock-screen-page{
+	background: url('http://swlabs.co/madmin/code/images/bg/3.jpg') center center fixed;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	padding: 5px;
+	height: 1000px;
+	.page-form{
+		background-color: rgba(0,0,0,0.2);
+		color: #ffffff;
+		margin-top: 15%;
+		text-align: center;
+		input{
+			background-color: rgba(0,0,0,0.3);
+			border: 0;
+		}
+		h1{
+			margin: 0;
+			font-family: 'Oswald';
+		}
+	}
+}
+
+#lock-screen-avatar{
+	top: -78px;
+	left: 50%;
+	margin-left: -74px;
+	position: absolute;
+	display: inline-block;
+	img{
+		border: 10px solid #eeeeee;
+	}
+}
+#lock-screen-info{
+	margin-top: 60px;
+}
+@media only screen and (max-width : 480px) {
+	#lock-screen-page {
+		.page-form {
+			width: 280px;
+			margin-top: 35%;
+		}
+	}
+}

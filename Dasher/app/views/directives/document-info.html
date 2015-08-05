@@ -1,0 +1,15 @@
+<div>
+  <h4>
+    {{documentName || 'Add ' + documentType}} {{$state.current.dirty ? '*' : ''}}
+    <em ng-show="$state.current.dirty">(unsaved changes)</em>
+  </h4>
+  <h6 ng-if="document.createdBy">
+    <em>id: <strong>#{{document._id}}</strong></em><br>
+    <em>Created by: <strong>{{document.createdBy.firstName}} {{document.createdBy.lastName}}</strong></em><br>
+    <em>Created on: <strong>{{document.createdAt | date}}</strong></em><br>
+    <em>Last edited on: <strong>{{document.updatedAt | date:'medium'}}</strong></em>
+  </h6>
+  <h6 ng-if="!document.createdBy">
+    <em>New document</em>
+  </h6>
+</div>

@@ -1,0 +1,68 @@
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="portlet box">
+            <div class="portlet-header">
+                <div class="caption">用户列表</div>
+            </div>
+
+            <div class="portlet-body">
+                <div class="row mbm">
+
+                    <div class="col-lg-3 pull-right">
+                        <div class="input-group">
+                            <input type="text" placeholder="用户名" class="form-control" ng-model="searchStr">
+                            <span class="input-group-btn">
+                                <a ng-click="ToSearchList()" class="btn btn-primary">查询</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <table id="table_id_over"
+                       class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                    <thead>
+                    <tr>
+                        <th >#</th>
+                        <th>用户名</th>
+                        <th ng-hide="true">LastName</th>
+                        <th>邮箱</th>
+                        <th>手机</th>
+                        <th>余额</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    <tbody>
+                    <tr ng-repeat="data in userLists">
+                        <td>{{$index+1}}</td>
+                        <td>{{data.nickName}}</td>
+                        <td ng-hide="true">{{data.lastName}}</td>
+                        <td>{{data.email}}</td>
+                        <td>{{data.mobilePhone}}</td>
+                        <td>{{data.balance  | currency}}</td>
+                        <td>{{data.status==0?'普通用户':(data.status==1?'送餐人申请中':(data.status==2?'送餐人':(data.status==3?'账户冻结':(data.status==4?'申请拒绝':'不可用'))))}}</td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-xs" ng-click="ToUserInfoClick(data.uid)"><i
+                                    class="fa fa-edit"></i>&nbsp;
+                                详细
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    </thead></table>
+                <div class="row mbm">
+                    <div class="col-lg-12">
+                        <div class="pagination-panel">
+                            当前页
+                            &nbsp;<a href="javascript:void(0);" class="btn btn-sm btn-default btn-prev gw-prev"><i class="fa fa-angle-left"></i></a>&nbsp;
+                            <input type="text" maxlenght="5" value="1" class="pagination-panel-input form-control input-mini input-inline input-sm text-center gw-page"/>&nbsp;
+                            <a href="javascript:void(0);" class="btn btn-sm btn-default btn-prev gw-next"><i class="fa fa-angle-right"></i></a>&nbsp;
+                            总页数 {{totalPage}} | 每页
+                            &nbsp;{{countPage}}&nbsp;
+                            条数据 | 总数据 {{totalCount}} 条
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
